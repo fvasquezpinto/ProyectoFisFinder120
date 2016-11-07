@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Theme Made By www.w3schools.com - No Copyright -->
+    <title>FisFinder 120</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#flip").click(function(){
+                $("#panel").slideToggle("slow");
+            });
+        });
+    </script>
+    <style>
+        body {
+            font: 400 15px Lato, sans-serif;
+            line-height: 1.8;
+            color: #818181;
+        }
+        h2 {
+            font-size: 24px;
+            text-transform: uppercase;
+            color: #303030;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+        h4 {
+            font-size: 19px;
+            line-height: 1.375em;
+            color: #303030;
+            font-weight: 400;
+            margin-bottom: 30px;
+        }
+        .jumbotron {
+            background-color: #444444;
+            color: #fff;
+            padding: 100px 25px;
+            font-family: Montserrat, sans-serif;
+        }
+        .container-fluid {
+            padding: 60px 50px;
+        }
+        .bg-grey {
+            background-color: #f6f6f6;
+        }
+
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            margin-bottom: 10px;
+        }
+
+        .item h4 {
+            font-size: 19px;
+            line-height: 1.375em;
+            font-weight: 400;
+            font-style: italic;
+            margin: 70px 0;
+        }
+        .item span {
+            font-style: normal;
+        }
+
+        .panel-footer h3 {
+            font-size: 32px;
+        }
+        .panel-footer h4 {
+            color: #f6f6f6;
+            font-size: 14px;
+        }
+
+        .navbar {
+            margin-bottom: 0;
+            background-color: #2b2b2b;
+            z-index: 9999;
+            border: 0;
+            font-size: 12px !important;
+            line-height: 1.42857143 !important;
+            letter-spacing: 4px;
+            border-radius: 0;
+            font-family: Montserrat, sans-serif;
+        }
+        .navbar li a, .navbar .navbar-brand {
+            color: #fff !important;
+        }
+        .navbar-nav li a:hover, .navbar-nav li.active a {
+            color: #7fcdb8 !important;
+            background-color: #fff !important;
+        }
+        .navbar-default .navbar-toggle {
+            border-color: transparent;
+            color: #fff !important;
+        }
+        @keyframes slide {
+            0% {
+                opacity: 0;
+                transform: translateY(70%);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0%);
+            }
+        }
+
+        #panel, #flip {
+            padding: 5px;
+            text-align: center;
+            background-color: ;
+            border: solid 1px #c3c3c3;
+        }
+
+        #panel {
+            padding: 50px;
+            display: none;
+        }
+
+        div.img {
+            margin: 5px;
+            border: 1px solid #000000;
+            float: left;
+            width: 180px;
+        }
+
+        div.img:hover {
+            border: 1px solid #777;
+        }
+
+        div.img img {
+            width: 100%;
+            height: auto;
+        }
+
+        div.desc {
+            padding: 15px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#myPage">Cerrar Sesion</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="myNavbar">
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#Consfeed">Consultar Feedback</a></li>
+                <li><a href="#Mngacs">Administrar Cuentas</a></li>
+                <li><a href="#Modulos">Módulos</a></li>
+                <li><a href="#Herramientas">Herramientas</a></li>
+
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+<div class="jumbotron text-center" style="width: auto; height: 700px;" >
+    <h1>FisFinder 120</h1>
+    <h2 style="color: transparent"> a </h2>
+<div class="col-sm-3" style="border: solid;background-color: #303030">
+    <h3 style="color: transparent"> a </h3>
+    <h4 style="color: snow; font-style: italic"> Sesión Iniciada: </h4>
+    <h4 style="color: snow">  </h4>{{PROFESOR}}
+    <h4 style="color: snow"> Administrador</h4>
+    <h4> </h4>
+    <h1> </h1>
+</div>
+    <div class="container-fluid">
+        <div class="col-sm-9">
+            <div class="12u 12u$(medium) ">
+                <div class="collapse navbar-collapse" id="myNavbar2">
+                    <div id="flip">Noticias</div>
+                    <div id="panel">
+                        <ul>
+                            <li>3 Nuevos Feedback </li>
+                            <li>2 Nuevos Usuarios </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            </div>
+        <h2 style="color: transparent"> a </h2>
+</div>
+
+<!--<div class="container">
+    <div class="jumbotron" style="padding-bottom:0px;">
+        <h2>FisFinder120</h2>
+    </div>
+    <form class="form-signin" role="form">
+        <input type="email" class="form-control" placeholder="Email" required="" autofocus="">
+        <input type="password" class="form-control" placeholder="Password" required="">
+        <label class="checkbox">
+            <a href="#"> Registrarse</a>
+        </label>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
+    </form>
+
+</div>-->
+
+
+<!-- Container (Contact Section) -->
+<div id="contact" class="container-fluid bg-grey">
+    <h2 class="text-center">Fisica General II</h2>
+    <h3 class="text-center">Profesor Maximiliano Rivera</h3>
+    <h4 class="text-center">UTFSM CSJ</h4>
+
+    <!--<div class="col-sm-7 slideanim">
+        <div class="row">
+            <div class="col-sm-6 form-group">
+                <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
+            </div>
+            <div class="col-sm-6 form-group">
+                <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+            </div>
+        </div>
+        <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea><br>
+        <div class="row">
+            <div class="col-sm-12 form-group">
+                <button class="btn btn-default pull-right" type="submit">Send</button>
+            </div>
+        </div>
+    </div>-->
+</div>
+</div>
+
+
+</body>
+</html>

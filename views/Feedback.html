@@ -3,6 +3,14 @@
 <head>
     <!-- Theme Made By www.w3schools.com - No Copyright -->
     <title>FisFinder 120</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../formulario.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style>
         body {
             font: 400 15px Lato, sans-serif;
@@ -94,8 +102,6 @@
             }
         }
     </style>
-
-
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
 
@@ -107,7 +113,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#/">Inicio</a>
+            <a class="navbar-brand" href="#myPage">Inicio</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
@@ -122,52 +128,23 @@
 </nav>
 
 <div class="jumbotron text-center">
-    <h1>FisFinder 120</h1>
-    {{Registrarse}}
-    <center>
 
-        <div style="width: 300px; height: 700px;">
-            <div>
+    <form action="#/" method="post" class = "form">
 
-                <section>
-
-                    <div class="form-group">
-                        <label for="nombre">Nombre</label>
-                        <input type="text" class="form-control"  id = "nombre" placeholder="Nombre" required="" autofocus="" ng-model="nuevoNombre">
-
-                    </div>
-
-                    <div class="form-group">
-                        <label for="rut">Rut</label>
-                        <input type="text" class="form-control" id ="rut" placeholder="Rut" required="" ng-model="nuevoRut">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" class="form-control" id ="email"  placeholder="Email" required="" autofocus="" ng-model="nuevoEmail">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control" id ="password" placeholder="Password" required="" ng-model="nuevoPassword">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="Rol">Rol</label>
-                        <input type="text" class="form-control" id ="rol" placeholder="Rol" required="" autofocus="" ng-model="nuevoRol">
-                    </div>
-                    <a style="color: #e4886a" ng-cloak="">{{incompleto}}</a>
-                    <br>
-                    <button ng-click="submit()"><a>Registrarse </a></button>
-
-
-                </section>
-            </div>
-
+        <div>
+            <label class = "label" for="mail">Email:</label>
+            <input class = "input" type="email" id="mail" />
+        </div>
+        <div class="3u 12u$(medium)">
+            <label class = "label" for="msg">Feedback:</label>
+            <textarea class = "textarea" id="msg"></textarea>
         </div>
 
-    </center>
+        <div class="form-group">
+                <button type="submit" class="btn btn-danger" >Enviar</button>
+        </div>
 
+    </form>
 </div>
 
 <!-- Container (Contact Section) -->
@@ -176,7 +153,10 @@
     <h3 class="text-center">Profesor Maximiliano Rivera</h3>
     <h4 class="text-center">UTFSM CSJ</h4>
 
+
 </div>
+
 
 </body>
 </html>
+
