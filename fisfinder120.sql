@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-09-2016 a las 22:13:47
+-- Tiempo de generación: 07-11-2016 a las 02:39:35
 -- Versión del servidor: 5.7.9
 -- Versión de PHP: 5.6.16
 
@@ -34,8 +34,15 @@ CREATE TABLE IF NOT EXISTS `administrador` (
   `Password` varchar(20) NOT NULL,
   `SuperAdmin` tinyint(1) NOT NULL,
   `Seccion` varchar(30) NOT NULL,
-  PRIMARY KEY (`Rut`)
+  PRIMARY KEY (`Email`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `administrador`
+--
+
+INSERT INTO `administrador` (`Nombre`, `Rut`, `Email`, `Password`, `SuperAdmin`, `Seccion`) VALUES
+('Maximilialo Rivera', '12345678-4', 'maximiliano.rivera@usm.cl', '1234', 1, 'General');
 
 -- --------------------------------------------------------
 
@@ -49,6 +56,7 @@ CREATE TABLE IF NOT EXISTS `contenido` (
   `Titulo` varchar(30) NOT NULL,
   `URL` int(80) NOT NULL,
   `Posicion` int(11) NOT NULL,
+  `Tipo` tinyint(1) NOT NULL,
   PRIMARY KEY (`#Contenido`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -63,11 +71,22 @@ CREATE TABLE IF NOT EXISTS `estudiante` (
   `Nombre` varchar(30) NOT NULL,
   `Rut` varchar(11) NOT NULL,
   `Email` varchar(40) NOT NULL,
-  `Contraseña` varchar(20) NOT NULL,
+  `Password` varchar(20) NOT NULL,
   `Rol` varchar(11) NOT NULL,
-  `Tipo` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`Rut`)
+  `Tipo` char(1) NOT NULL DEFAULT '4',
+  PRIMARY KEY (`Email`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `estudiante`
+--
+
+INSERT INTO `estudiante` (`Nombre`, `Rut`, `Email`, `Password`, `Rol`, `Tipo`) VALUES
+('123', '123', 'mi@on.sis', 'papas', '123123', '1'),
+('Gabriel', 'Molina', 'g@m.b', '1234', '1234', '0'),
+('4314212', '214214342', '123@miau.cl', '1231', '2131', '0'),
+('121412', '3212', '123@miau2.cl', '12343', '213', '0'),
+('123432', '321', '132@asd', '123', '1233', '4');
 
 -- --------------------------------------------------------
 
