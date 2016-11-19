@@ -9,7 +9,7 @@ Usando Node, MySQL. Herramienta de trabajo: WebStorm
 
 2.- Se debe modificar el archivo server.js con los datos correspondientes al servidor que se va a utilizar junto al sistema
 
-3.- En un terminar o consola de node, en la carpeta donde se guardaron los archivos de esta sección, se deben ejecutar:
+3.- En un terminal o consola de node, en la carpeta donde se guardaron los archivos de esta sección, se deben ejecutar:
 
     I) npm install express
   
