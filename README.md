@@ -11,9 +11,9 @@ Usando Node, MySQL. Herramienta de trabajo: WebStorm
 
 3.- En un terminar o consola de node, en la carpeta donde se guardaron los archivos de esta sección, se deben ejecutar:
 
-  I) npm install express
+    I) npm install express
   
-  II) npm install mysql
+    II) npm install mysql
   
 4.- Ejecutar server.js con node
 
