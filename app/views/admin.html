@@ -197,6 +197,11 @@
             display: block;
         }
 
+        .center {
+            margin: auto;
+            width: 25%;;
+            padding: 0px;
+        }
     </style>
 
 </head>
@@ -261,12 +266,19 @@
             <div class="12u 12u$(medium) ">
                 <div class="collapse navbar-collapse" id="myNavbar2">
                     <div id="flip">Noticias</div>
+
                     <div id="panel">
+
                         <ul>
-                            <li>3 Nuevos Feedback </li>
-                            <li>2 Nuevos Usuarios </li>
+                            <div class="center">
+                            <li>{{nrofeedbacks}} Nuevos Feedback </li>
+                            <br>
+                            <li>3 Nuevos Usuarios </li>
+                            </div>
                         </ul>
+
                     </div>
+
                 </div>
             </div>
             </div>

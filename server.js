@@ -111,6 +111,10 @@ function encaminar(pedido, respuesta, camino) {
             modificar_es(pedido, respuesta);
             break;
         }
+        case 'app/views/obtener_nfeedbacks': {
+            obtener_nfeedbacks(pedido, respuesta);
+            break;
+        }
         case 'views/crear_estudiante': {
             crear_estudiante(pedido, respuesta);
             break;
@@ -823,6 +827,22 @@ function agregar_feedback(pedido, respuesta) {
             //console.log(formulario['email']);
             respuesta.end('SI');
         });
+    });
+}
+
+function obtener_nfeedbacks(pedido, respuesta) {
+    var info = '';
+    pedido.on('data', function (datosparciales) {
+        info += datosparciales;
+    });
+    pedido.on('end', function () {
+        respuesta.writeHead(200, {'Content-Type': 'text/html'});
+        connection.query("SELECT * FROM feedback WHERE revisado = '0'", function (err, rows) {
+            if (err) throw err;
+            respuesta.end(rows.length.toString());
+
+        });
+
     });
 }
 

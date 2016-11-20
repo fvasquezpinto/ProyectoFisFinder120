@@ -3,9 +3,10 @@ var rut = '';
 var password = '';
 var mail = '';
 var tipo = '';
-var admin= '';
-var seccion= '';
-var notificacion='';
+var admin = '';
+var seccion = '';
+var notificacion ='';
+var nfeedbacks = '';
 
 var ang = angular.module("controller", []);
 
@@ -289,6 +290,13 @@ ang.controller('feedbackCtrl', function ($scope, $http, $log, $window) {
 
 });
 
+ang.controller('consfeedCtrl', function ($scope, $http, $log, $window) {
+    if (mail == ''){
+        $window.location.href = '#/home';
+    }
+    $scope.PROFESOR = mail;
+
+});
 
 ang.controller('adminCtrl', function ($scope, $http, $log, $window) {
     if (mail == ''){
@@ -297,14 +305,18 @@ ang.controller('adminCtrl', function ($scope, $http, $log, $window) {
     $scope.PROFESOR = mail;
     $scope.observer = notificacion;
 
-});
-ang.controller('consfeedCtrl', function ($scope, $http, $log, $window) {
-    if (mail == ''){
-        $window.location.href = '#/home';
-    }
-    $scope.PROFESOR = mail;
+    $http.get('views/obtener_nfeedbacks')
+        .success(function (data) {
+            nfeedbacks= data;
+        })
+        .error(function (err) {
+            $log.error(err);
+        });
+
+    $scope.nrofeedbacks = nfeedbacks;
 
 });
+
 ang.controller('mngacsCtrl', function ($scope, $http, $log, $window) {
     if (mail == ''){
         $window.location.href = '#/home';
