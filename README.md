@@ -17,4 +17,6 @@ Usando Node, MySQL. Herramienta de trabajo: WebStorm
   
 4.- Ejecutar server.js con node
 
+En el explorador Chrome o browser de su sistema operativo diríjase a localhost:9000
+
 
