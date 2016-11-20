@@ -133,28 +133,28 @@
 
                     <div class="form-group">
                         <label for="nombre">Nombre</label>
-                        <input type="text" class="form-control"  id = "nombre" placeholder="Nombre" required="" autofocus="" ng-model="nuevoNombre">
+                        <input type="text" class="form-control"  id = "nombre" placeholder="Nombre" required="" autofocus="" ng-model="nuevoNombre" maxlength="30">
 
                     </div>
 
                     <div class="form-group">
                         <label for="rut">Rut</label>
-                        <input type="text" class="form-control" id ="rut" placeholder="Rut" required="" ng-model="nuevoRut">
+                        <input type="text" class="form-control" id ="rut" placeholder="Rut (ej: 19911133-0)" required="" ng-model="nuevoRut" maxlength="10">
                     </div>
 
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" class="form-control" id ="email"  placeholder="Email" required="" autofocus="" ng-model="nuevoEmail">
+                        <input type="email" class="form-control" id ="email"  placeholder="Email" required="" autofocus="" ng-model="nuevoEmail" maxlength="40">
                     </div>
 
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" class="form-control" id ="password" placeholder="Password" required="" ng-model="nuevoPassword">
+                        <input type="password" class="form-control" id ="password" placeholder="Password" required="" ng-model="nuevoPassword" maxlength="20">
                     </div>
 
                     <div class="form-group">
                         <label for="Rol">Rol</label>
-                        <input type="text" class="form-control" id ="rol" placeholder="Rol" required="" autofocus="" ng-model="nuevoRol">
+                        <input type="text" class="form-control" id ="rol" placeholder="Rol (ej: 200499123-5)" required="" autofocus="" ng-model="nuevoRol" maxlength="11">
                     </div>
                     <a style="color: #e4886a" ng-cloak="">{{incompleto}}</a>
                     <br>

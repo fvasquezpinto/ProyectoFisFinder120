@@ -67,6 +67,10 @@ function encaminar(pedido, respuesta, camino) {
             registro2(pedido, respuesta);
             break;
         }
+        case 'app/views/registroadmin': {
+            registroadmin(pedido, respuesta);
+            break;
+        }
         case 'app/views/obtener_nombre': {
             obtener_nombre(pedido, respuesta);
             break;
@@ -87,12 +91,24 @@ function encaminar(pedido, respuesta, camino) {
             recuperarlogin(pedido, respuesta);
             break;
         }
-        case 'views/eliminar_estudiante': {
+        case 'app/views/eliminar_estudiante': {
             eliminar_estudiante(pedido, respuesta);
             break;
         }
-        case 'views/eliminar_es': {
+        case 'app/views/eliminar_es': {
             eliminar_es(pedido, respuesta);
+            break;
+        }
+        case 'app/views/agregar_feedback': {
+            agregar_feedback(pedido, respuesta);
+            break;
+        }
+        case 'app/views/modificar_estudiante': {
+            modificar_estudiante(pedido, respuesta);
+            break;
+        }
+        case 'app/views/modificar_es': {
+            modificar_es(pedido, respuesta);
             break;
         }
         case 'views/crear_estudiante': {
@@ -101,14 +117,6 @@ function encaminar(pedido, respuesta, camino) {
         }
         case 'views/crear_es': {
             crear_es(pedido, respuesta);
-            break;
-        }
-        case 'views/modificar_estudiante': {
-            modificar_estudiante(pedido, respuesta);
-            break;
-        }
-        case 'views/modificar_es': {
-            modificar_es(pedido, respuesta);
             break;
         }
         case 'views/aux_modificar_es': {
@@ -128,6 +136,7 @@ function encaminar(pedido, respuesta, camino) {
             encuesta(pedido, respuesta);
             break;
         }
+
 
         default : {
             fs.exists(camino, function (existe) {
@@ -185,7 +194,48 @@ function registro2(pedido, respuesta) {
                     rol: formulario['rol'],
                     tipo: 4
                 };
-                connection.query("INSERT INTO estudiante SET ?", datos , function (err, rows) {
+                connection.query("INSERT INTO estudiante SET ?", datos, function (err, rows) {
+                    if (err) throw err;
+                    //console.log(formulario['email']);
+                    respuesta.end(formulario['email']);
+                });
+            }
+
+        });
+    });
+}
+
+function registroadmin(pedido, respuesta) {
+    var dato = '';
+    var info = '';
+    pedido.on('data', function (datosparciales) {
+        info += datosparciales;
+    });
+    pedido.on('end', function () {
+        var formulario = querystring.parse(info);
+        respuesta.writeHead(200, {'Content-Type': 'text/html'});
+        //console.log(formulario);
+        //console.log(formulario["mail"]);
+        //console.log(toString(formulario['mail']));
+
+        connection.query("SELECT * FROM administrador WHERE Email = ?", formulario['email'], function (err, rows) {
+            if (err) throw err;
+
+            if (rows.length != 0) {
+                respuesta.end("NO");
+            }
+            else {
+
+                var datos = {
+                    nombre: formulario['nombre'],
+                    rut: formulario['rut'],
+                    email: formulario['email'],
+                    password: formulario['clave'],
+                    superadmin: 0,
+                    seccion: formulario['seccion']
+
+                };
+                connection.query("INSERT INTO administrador SET ?", datos, function (err, rows) {
                     if (err) throw err;
                     //console.log(formulario['email']);
                     respuesta.end(formulario['email']);
@@ -269,7 +319,7 @@ function obtener_admin(pedido, respuesta) {
                     respuesta.end('0');
                 }
             }
-            else{
+            else {
                 respuesta.end('1');
             }
         });
@@ -381,9 +431,9 @@ function recuperarlogin(pedido, respuesta) {
 
 function eliminar_estudiante(pedido, respuesta) {
 
-    var datos = '|Nombre\t|\tRut\t|\tEmail\t|\tPassword\t|\tRol\t|\tTipo|';
+    var datos = '';
+    datos += ('\t\t' + 'Cuentas de Usuarios' + '\t\t');
     var info = '';
-
     pedido.on('data', function (datosparciales) {
         info += datosparciales;
     });
@@ -393,36 +443,41 @@ function eliminar_estudiante(pedido, respuesta) {
 
         connection.query("SELECT * FROM estudiante", function (err, rows) {
             if (err) throw err;
-
+            var buffer = new Buffer(rows.length);
+            datos += '________________________________________________________________'
+            datos += ('\t|\t' + 'Nombre' + '\t|\t' + 'Rut' + '\t|\t' + 'Email' + '\t|\t');
             for (var i = 0; i < rows.length; i++) {
-                datos += ('<h1> </h1>|' + rows[i].Nombre + '\t|\t' + rows[i].Rut + '\t|\t' + rows[i].Email + '\t|\t' +
-                rows[i].Password + '\t|\t' + rows[i].Rol + '\t|\t' + rows[i].Tipo + '|');
+                datos += '________________________________________________________________'
+                datos += ('\t|\t' + rows[i].Nombre + '\t|\t' + rows[i].Rut + '\t|\t' + rows[i].Email + '\t|\t');
             }
+            console.log('---');
             console.log(datos);
-            var pagina = '<!doctype html><html><head><title>FisFinder120 Home</title><meta charset="utf-8" />' +
-                '<meta name="viewport" content="width=device-width, initial-scale=1" />' +
-                '<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->' +
-                '<link rel="stylesheet" href="assets/css/main.css" />' +
-                '<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]--></head><body>' +
-                '<section id="banner"><div class="align-center"><div style="margin: 60px 100px 100px 489px">' +
-                '<div style="width: 300px; height: 100px;">' +
-                '<h3>Usuarios del sistema:\n' + '<h1> </h1>' + datos + '</h3>' + '<form action="eliminar_es" method="post">' +
-                'Ingrese Email del usuario a eliminar:' + '<input type="text" name="email_eliminar" size="30"><br>' +
-                '<input type="submit" value="Eliminar Estudiante">' + '</form>' + '<br>' +
-                '<a href="vistaadmin.html">Volver a mi menu</a>' +
-                '</div></div></div></section>' +
-                '</body></html>';
-            respuesta.end(pagina);
+            console.log('---');
+
+
+        });
+        connection.query("SELECT * FROM administrador", function (err, rows) {
+            if (err) throw err;
+            var buffer = new Buffer(rows.length);
+            datos += '________________________________________________________________'
+            datos += ('\t\t' + 'Cuentas de Administradores' + '\t\t');
+            datos += '________________________________________________________________'
+            datos += ('\t|\t' + 'Nombre' + '\t|\t' + 'Rut' + '\t|\t' + 'Email' + '\t|\t');
+            for (var i = 0; i < rows.length; i++) {
+                datos += '________________________________________________________________'
+                datos += ('\t|\t' + rows[i].Nombre + '\t|\t' + rows[i].Rut + '\t|\t' + rows[i].Email + '\t|\t');
+            }
+            console.log('---');
+            console.log(datos);
+            console.log('---');
+            respuesta.end(datos);
 
         });
     });
 }
 
 function eliminar_es(pedido, respuesta) {
-
-
     var info = '';
-
     pedido.on('data', function (datosparciales) {
         info += datosparciales;
     });
@@ -430,41 +485,30 @@ function eliminar_es(pedido, respuesta) {
         var formulario = querystring.parse(info);
         respuesta.writeHead(200, {'Content-Type': 'text/html'});
 
-        connection.query("SELECT * FROM estudiante WHERE Email = ?", formulario['email_eliminar'], function (err, rows) {
+        connection.query("SELECT * FROM estudiante WHERE Email = ?", formulario['email'], function (err, rows) {
             if (err) throw err;
             if (rows.length != 0) {
 
-                connection.query("DELETE FROM estudiante WHERE Email = ?", formulario['email_eliminar'], function (err, rows) {
+                connection.query("DELETE FROM estudiante WHERE Email = ?", formulario['email'], function (err, rows) {
                     if (err) throw err;
-                    var pagina = '<!doctype html><html><head><title>FisFinder120 Home</title><meta charset="utf-8" />' +
-                        '<meta name="viewport" content="width=device-width, initial-scale=1" />' +
-                        '<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->' +
-                        '<link rel="stylesheet" href="assets/css/main.css" />' +
-                        '<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]--></head><body>' +
-                        '<section id="banner"><div class="align-center"><div style="margin: 60px 100px 100px 489px">' +
-                        '<div style="width: 300px; height: 100px;">' +
-                        'Usuario eliminado' + '<br>' + '<a href="vistaadmin.html">Volver a mi menu</a>' + '</body></html>' +
-                        '</div></div></div></section>' +
-                        '</body></html>';
-                    respuesta.end(pagina);
 
-                    console.log('sipase')
-
+                    respuesta.end(formulario['email']);
                 });
             }
             else {
-                var pagina = '<!doctype html><html><head><title>FisFinder120 Home</title><meta charset="utf-8" />' +
-                    '<meta name="viewport" content="width=device-width, initial-scale=1" />' +
-                    '<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->' +
-                    '<link rel="stylesheet" href="assets/css/main.css" />' +
-                    '<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]--></head><body>' +
-                    '<section id="banner"><div class="align-center"><div style="margin: 60px 100px 100px 489px">' +
-                    '<div style="width: 300px; height: 100px;">' +
-                    '<h4>El usuario que intenta eliminar no existe, ingrese Email nuevamente.</h4>' +
-                    '<form action="eliminar_estudiante" method="post"><input type="submit" value="Volver"></form>' +
-                    '</div></div></div></section>' +
-                    '</body></html>';
-                respuesta.end(pagina);
+                connection.query("SELECT * FROM administrador WHERE Email = ?", formulario['email'], function (err, rows) {
+                    if (err) throw err;
+                    if (rows.length != 0) {
+                        connection.query("DELETE FROM administrador WHERE Email = ?", formulario['email'], function (err, rows) {
+                            if (err) throw err;
+
+                            respuesta.end(formulario['email']);
+                        });
+                    }
+                    else {
+                        respuesta.end('NO');
+                    }
+                });
             }
         });
     });
@@ -563,49 +607,31 @@ function crear_es(pedido, respuesta) {
 }
 
 function modificar_estudiante(pedido, respuesta) {
+
+    var datos = '';
+    datos += ('\t\t' + 'Cuentas de Usuarios' + '\t\t');
     var info = '';
-    var datos = '|Nombre\t|\tRut\t|\tEmail\t|\tPassword\t|\tRol\t|\tTipo\t|\t';
     pedido.on('data', function (datosparciales) {
         info += datosparciales;
     });
     pedido.on('end', function () {
+        var formulario = querystring.parse(info);
         respuesta.writeHead(200, {'Content-Type': 'text/html'});
 
         connection.query("SELECT * FROM estudiante", function (err, rows) {
             if (err) throw err;
-
+            var buffer = new Buffer(rows.length);
+            datos += '________________________________________________________________'
+            datos += ('\t|\t' + 'Nombre' + '\t|\t' + 'Rut' + '\t|\t' + 'Email' + '\t|\t' + 'Tipo Actual' + '\t|\t');
             for (var i = 0; i < rows.length; i++) {
-                datos += ('<h1> </h1>' + '\t|\t' + rows[i].Nombre + '\t|\t' + rows[i].Rut + '\t|\t' + rows[i].Email + '\t|\t' +
-                rows[i].Password + '\t|\t' + rows[i].Rol + '\t|\t' + rows[i].Tipo + '|');
+                datos += '________________________________________________________________'
+                datos += ('\t|\t' + rows[i].Nombre + '\t|\t' + rows[i].Rut + '\t|\t' + rows[i].Email + '\t|\t' + rows[i].Tipo + '\t|\t');
             }
-            var pagina = '<!doctype html><html><head><title>FisFinder120 Home</title><meta charset="utf-8" />' +
-                '<meta name="viewport" content="width=device-width, initial-scale=1" />' +
-                '<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->' +
-                '<link rel="stylesheet" href="assets/css/main.css" />' +
-                '<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]--></head><body>' +
-                '<section id="banner"><div class="align-center"><div style="margin: 0px 100px 100px 489px">' +
-                '<div style="width: 300px; height: 200px;">' + '<h3>Usuarios del sistema:\n' + '<h1> </h1>' + datos + '</h3>' +
-                '<h1> </h1>' + '<h4> Ingrese el email del usuario que desea modifcar: </h4>' +
-
-                '<form action="modificar_es" method="post"><input type="text" name="email">' + '' + '<h1> </h1>' +
-                '<h1> </h1>' +
-
-                '<h4> Seleccione el dato que desea modifcar: </h4>' +
-                '<SELECT name="parametro" size="10" class="button special">' +
-                '<OPTION VALUE="clave" selected>Clave</OPTION>' +
-                '<OPTION VALUE="tipo">Tipo</OPTION>' +
-                '</SELECT>' +
-
-                '<h1> </h1>' +
-                '<input type="submit" value="Modificar"></form>' +
-
-                '<a href="vistaadmin.html">' + '<h1> </h1>' + 'Volver a mi menu</a>' +
-                '</div></div></div></section>' + '<br>' +
-                '</body></html>';
-            respuesta.end(pagina);
+            console.log('---');
+            console.log(datos);
+            console.log('---');
+            respuesta.end(datos);
         });
-
-
     });
 }
 
@@ -620,116 +646,16 @@ function modificar_es(pedido, respuesta) {
         respuesta.writeHead(200, {'Content-Type': 'text/html'});
         connection.query("SELECT * FROM estudiante WHERE Email = ?", formulario['email'], function (err, rows) {
             if (err) throw err;
-            if (rows.length == 0) {
-                var pagina = '<!doctype html><html><head><title>FisFinder120 Home</title><meta charset="utf-8" />' +
-                    '<meta name="viewport" content="width=device-width, initial-scale=1" />' +
-                    '<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->' +
-                    '<link rel="stylesheet" href="assets/css/main.css" />' +
-                    '<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]--></head><body>' +
-                    '<section id="banner"><div class="align-center"><div style="margin: 60px 100px 100px 489px">' +
-                    '<div style="width: 300px; height: 100px;">' +
-                    '<h4>El usuario que intenta modificar no existe, ingrese Email nuevamente.</h4>' +
-                    '<form action="modificar_estudiante" method="post"><input type="submit" value="Volver"></form>' +
-                    '</div></div></div></section>' +
-                    '</body></html>';
-                respuesta.end(pagina);
-
+            if (rows.length != 0) {
+                console.log('asdasfadsfadsfasf');
+                console.log(formulario['email']);
+                connection.query("UPDATE estudiante SET Tipo=? WHERE Email = ?", [formulario['tipo'], formulario['email']]);
+                respuesta.end(formulario['email']);
             }
             else {
-                if (formulario['parametro'] == 'clave') {
-                    var pagina = '<!doctype html><html><head><title>FisFinder120 Home</title><meta charset="utf-8" />' +
-                        '<meta name="viewport" content="width=device-width, initial-scale=1" />' +
-                        '<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->' +
-                        '<link rel="stylesheet" href="assets/css/main.css" />' +
-                        '<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]--></head><body>' +
-                        '<section id="banner"><div class="align-center"><div style="margin: 60px 100px 100px 489px">' +
-                        '<div style="width: 300px; height: 100px;">' +
-                        '<form action="aux_modificar_es" method="post">' +
-                        'Nueva Clave:' +
-                        '<input type="password" name="clave" size="30"><br>' +
-                        '<input type="hidden" name="parametro" value="clave" size="30"><br>' +
-                        '<input type="hidden" name="email" value="' + formulario['email'] + '" size="30"><br>' +
-                        '<input type="submit" value="Modificar Clave de Estudiante">' + '</form>' +
-                        '<a href="vistaadmin.html">Volver a mi menu</a>' +
-                        '</div></div></div></section>' +
-                        '</body></html>';
-                    respuesta.end(pagina);
-
-                }
-                else {
-                    var pagina = '<!doctype html><html><head><title>FisFinder120 Home</title><meta charset="utf-8" />' +
-                        '<meta name="viewport" content="width=device-width, initial-scale=1" />' +
-                        '<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->' +
-                        '<link rel="stylesheet" href="assets/css/main.css" />' +
-                        '<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]--></head><body>' +
-                        '<section id="banner"><div class="align-center"><div style="margin: 60px 100px 100px 489px">' +
-                        '<div style="width: 300px; height: 100px;">' +
-                        '<form action="aux_modificar_es" method="post">' +
-                        'Nuevo Tipo:' +
-                        '<input type="text" name="nuevo_tipo" size="1"><br>' +
-                        '<input type="hidden" name="parametro" value="tipo" size="30"><br>' +
-                        '<input type="hidden" name="email" value="' + formulario['email'] + '" size="30"><br>' +
-                        '<input type="submit" value="Modificar Tipo de Estudiante">' + '</form>' +
-                        '<a href="vistaadmin.html">Volver a mi menu</a>' +
-                        '</div></div></div></section>' +
-                        '</body></html>';
-                    respuesta.end(pagina);
-
-                }
-
+                respuesta.end('NO');
             }
         });
-
-    });
-}
-
-function aux_modificar_es(pedido, respuesta) {
-    var info = '';
-
-    pedido.on('data', function (datosparciales) {
-        info += datosparciales;
-    });
-    pedido.on('end', function () {
-        var formulario = querystring.parse(info);
-        respuesta.writeHead(200, {'Content-Type': 'text/html'});
-        if (formulario['parametro'] == 'clave') {
-            connection.query("UPDATE estudiante SET Password=? WHERE Email = ?", [formulario['clave'], formulario['email']]);
-            var pagina = '<!doctype html><html><head><title>FisFinder120 Home</title><meta charset="utf-8" />' +
-                '<meta name="viewport" content="width=device-width, initial-scale=1" />' +
-                '<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->' +
-                '<link rel="stylesheet" href="assets/css/main.css" />' +
-                '<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]--></head><body>' +
-                '<section id="banner"><div class="align-center"><div style="margin: 60px 100px 100px 489px">' +
-                '<div style="width: 300px; height: 100px;">' +
-                '<h4>Clave de estudiante modificada con éxito.</h4>' +
-                '<a href="vistaadmin.html">Volver a mi menu</a>' +
-                '</div></div></div></section>' +
-                '</body></html>';
-            respuesta.end(pagina);
-
-        }
-        else {
-            console.log('asdasfadsfadsfasf');
-            console.log(formulario['email']);
-
-            connection.query("UPDATE estudiante SET Tipo=? WHERE Email = ?", [formulario['nuevo_tipo'], formulario['email']]);
-
-            var pagina = '<!doctype html><html><head><title>FisFinder120 Home</title><meta charset="utf-8" />' +
-                '<meta name="viewport" content="width=device-width, initial-scale=1" />' +
-                '<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->' +
-                '<link rel="stylesheet" href="assets/css/main.css" />' +
-                '<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]--></head><body>' +
-                '<section id="banner"><div class="align-center"><div style="margin: 60px 100px 100px 489px">' +
-                '<div style="width: 300px; height: 100px;">' +
-                '<h4>Tipo de estudiante modificado con éxito.</h4>' +
-                '<a href="vistaadmin.html">Volver a mi menu</a>' +
-                '</div></div></div></section>' +
-                '</body></html>';
-            respuesta.end(pagina);
-
-
-        }
-
     });
 }
 
@@ -872,6 +798,31 @@ function encuesta(pedido, respuesta) {
             '<select name="3c"> <option value="">Selecciona una opcion</option>> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> </select><p>Tengo fuertes sensaciones y reacciones <select name="3d"> <option value="">Selecciona una opcion</option> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> </select><p> </fieldset> <br> <fieldset> <h3>Yo aprendo...</h3>Sintiendo <select name="4a"> <option value="">Selecciona una opcion</option> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> </select><p>Haciendo <select name="4b"> <option value="">Selecciona una opcion</option> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> </select><p>Observando <select name="4c"> <option value="">Selecciona una opcion</option> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> </select><p>Pensando <select name="4d"> <option value="">Selecciona una opcion</option> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> </select><p></fieldset>' +
             '<br><fieldset><h3>Cuando aprendo...</h3>Estoy abierto a nuevas experiencias <select name="5a"> <option value="">Selecciona una opcion</option> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> </select><p>Observo todos los aspectos del asunto <select name="5b"> <option value="">Selecciona una opcion</option> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> </select><p>Me gusta analizar las cosas, descomponerlas en sus partes <select name="5c"> <option value="">Selecciona una opcion</option> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> </select><p>Me gusta probar e intentar hacer las cosas <select name="5d"> <option value="">Selecciona una opcion</option> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> </select><p> </fieldset> <br> <fieldset> <h3>Cuando estoy aprendiendo...</h3>Soy una persona observadora <select name="6a"> <option value="">Selecciona una opcion</option> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> </select><p>Soy una persona activa<select name="6b"> <option value="">Selecciona una opcion</option> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> </select><p> Soy una persona intuitiva <select name="6c"> <option value="">Selecciona una opcion</option> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> </select><p> Soy una persona logica <select name="6d"> <option value="">Selecciona una opcion</option> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> </select><p> </fieldset> <br> <fieldset> <h3>Yo aprendo mejor de...</h3>La observacion <select name="7a"> <option value="">Selecciona una opcion</option> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> </select><p> La relacion con otras personas <select name="7b"> <option value="">Selecciona una opcion</option> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> </select><p>Las teorias racionales <select name="7c"> <option value="">Selecciona una opcion</option> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> </select><p>La oportunidad de probar y practicar <select name="7d"> <option value="">Selecciona una opcion</option> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> </select><p> </fieldset> <br> <fieldset> <h3>Cuando aprendo...</h3> Me gusta ver los resultados de mi trabajo <select name="8a"> <option value="">Selecciona una opcion</option> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> </select><p> Me gusta las ideas y las teorias <select name="8b"> <option value="">Selecciona una opcion</option> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> </select><p>Me tomo mi tiempo antes de actuar <select name="8c"> <option value="">Selecciona una opcion</option> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> </select><p>Me siento personalmente involucrado en las cosas <select name="8d"> <option value="">Selecciona una opcion</option> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> </select><p> </fieldset> <br> <fieldset> <h3>Aprendo mejor cuando...</h3> Confio en mis observaciones <select name="9a"> <option value="">Selecciona una opcion</option> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> </select><p> Confio en mis sentimientos <select name="9b"> <option value="">Selecciona una opcion</option> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> </select><p> Puedo probar por mi cuenta <select name="9c"> <option value="">Selecciona una opcion</option> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> </select><p> Confio en mis ideas <select name="9d"> <option value="">Selecciona una opcion</option> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> </select><p> </fieldset> <br> <fieldset> <h3>Cuando estoy aprendiendo...</h3> Soy una persona reservada <select name="10a"> <option value="">Selecciona una opcion</option> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> </select><p> Soy una persona receptiva <select name="10b"> <option value="">Selecciona una opcion</option> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> </select><p> Soy una persona responsable <select name="10c"> <option value="">Selecciona una opcion</option> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> </select><p> Soy una persona racional <select name="10d"> <option value="">Selecciona una opcion</option> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> </select><p> </fieldset> <br> <fieldset> <h3>Cuando aprendo...</h3> Me involucro <select name="11a"> <option value="">Selecciona una opcion</option> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> </select><p> Me gusta observar <select name="11b"> <option value="">Selecciona una opcion</option> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> </select><p> Evaluo las cosas <select name="11c"> <option value="">Selecciona una opcion</option> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> </select><p> Me gusta ser activo <select name="11d"> <option value="">Selecciona una opcion</option> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> </select><p> </fieldset> <br> <fieldset> <h3>Aprendo mejor cuando...</h3> Analizo ideas <select name="12a"> <option value="">Selecciona una opcion</option> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> </select><p> Soy receptivo y abierto <select name="12b"> <option value="">Selecciona una opcion</option> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> </select><p> Soy cuidadoso <select name="12c"> <option value="">Selecciona una opcion</option> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> </select><p> Soy practico <select name="12d"> <option value="">Selecciona una opcion</option> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> </select><p> </fieldset> <input type="hidden" name="email" value="' + formulario['email'] + '"> <br><input type="submit" onclick = "asignarTipoEstudiante(' + formulario['email'] + ',sumarRespuestas(window.location.href))" value="Enviar" ></br> <footer>Todos los derechos reservados. </footer> </form>> </article> </div> </div> </div><br> <!-- Footer --> </div> <!-- Scripts --> <script src="assets/js/jquery.min.js"></script> <script src="assets/js/jquery.dropotron.min.js"></script> <script src="assets/js/jquery.scrollgress.min.js"></script> <script src="assets/js/skel.min.js"></script> <script src="assets/js/util.js"></script> <script src="assets/js/index.js"></script> <script src="../server.js"></script> <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]--> <script src="assets/js/main.js"></script> </body> </html>';
         respuesta.end(pagina);
+    });
+}
+
+function agregar_feedback(pedido, respuesta) {
+    var dato = '';
+    var info = '';
+    pedido.on('data', function (datosparciales) {
+        info += datosparciales;
+    });
+    pedido.on('end', function () {
+        var formulario = querystring.parse(info);
+        respuesta.writeHead(200, {'Content-Type': 'text/html'});
+        //console.log(formulario);
+        //console.log(formulario["mail"]);
+        //console.log(toString(formulario['mail']));
+        var datos = {
+            mensaje: formulario['mensaje'],
+            tipo: formulario['tipo'],
+            revisado: 0
+        };
+        connection.query("INSERT INTO feedback SET ?", datos, function (err, rows) {
+            if (err) throw err;
+            //console.log(formulario['email']);
+            respuesta.end('SI');
+        });
     });
 }
 

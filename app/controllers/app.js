@@ -59,7 +59,7 @@ angularRoutingApp.config(function($routeProvider) {
       })
       .when('/Feedback', {
           templateUrl : '../views/Feedback.html',
-          controller  : 'feedbackController'
+          controller  : 'feedbackCtrl'
       })
       .when('/Consfeed', {
           templateUrl : '../views/Consfeed.html',

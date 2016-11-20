@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <!-- Theme Made By www.w3schools.com - No Copyright -->
-    <title>FisFinder 120</title>
+    <title>Nuevo Admin</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -117,7 +117,7 @@
         #panel, #flip {
             padding: 5px;
             text-align: center;
-            background-color: ;
+            background-color: transparent ;
             border: solid 1px #c3c3c3;
         }
 
@@ -207,7 +207,7 @@
 
 
     <li class="dropdown">
-        <a href="#" class="dropbtn">Herramientas</a>
+        <a class="dropbtn">Herramientas</a>
         <div class="dropdown-content">
             <a href="#Mi_cuenta">Mi Cuenta</a>
             <a href="#Consultar_usuarios">Ver Usuarios</a>
@@ -216,14 +216,14 @@
         </div>
     </li>
     <li class="dropdown">
-        <a href="#" class="dropbtn">Contenidos</a>
+        <a class="dropbtn">Contenidos</a>
         <div class="dropdown-content">
             <a href="#Agregar_contenido">Agregar</a>
             <a href="#Eliminar_contenido">Eliminar</a>
         </div>
     </li>
     <li class="dropdown">
-        <a href="#" class="dropbtn">Módulos</a>
+        <a class="dropbtn">Módulos</a>
         <div class="dropdown-content">
             <a href="#Convergente">Convergente</a>
             <a href="#Divergente">Divergente</a>
@@ -232,7 +232,7 @@
         </div>
     </li>
     <li class="dropdown">
-        <a href="#" class="dropbtn">Administrar Cuentas</a>
+        <a class="dropbtn">Administrar Cuentas</a>
         <div class="dropdown-content">
             <a href="#Mngacs">Crear nuevo Administrador</a>
             <a href="#Eliminaracc">Eliminar una Cuenta</a>
@@ -240,14 +240,14 @@
             <a href="#Consultaracc">Consultar una Cuenta</a>
         </div>
     </li>
-
     <li><a href="#Consfeed">Consultar Feedback</a></li>
 </ul>
 
 
-<div class="jumbotron text-center" style="width: auto; height: 700px;" >
-    <h1>FisFinder120</h1>
+<div class="jumbotron text-center" style="width: auto; height: auto;" >
+    <h5>Crear una Cuenta Administrador</h5>
     <h2 style="color: transparent"> a </h2>
+    <!--<h2 style="color: transparent"> a </h2>-->
     <div class="col-sm-3" style="border: solid;background-color: #303030">
         <h3 style="color: transparent"> a </h3>
         <h4 style="color: snow; font-style: italic"> Sesión Iniciada: </h4>
@@ -256,14 +256,49 @@
         <h4> </h4>
         <h1> </h1>
     </div>
-    <div class="container-fluid">
-        <div class="col-sm-9">
-            <div class="12u 12u$(medium) ">
+    <center>
 
+        <div style="width: 300px; height: 700px;">
+            <div>
+
+                <section>
+
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" class="form-control"  id = "nombre" placeholder="Nombre" required="" autofocus="" ng-model="nuevoNombre" maxlength="30">
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="rut">Rut</label>
+                        <input type="text" class="form-control" id ="rut" placeholder="Rut (ej: 19911133-0)" required="" ng-model="nuevoRut" maxlength="10">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id ="email"  placeholder="Email" required="" autofocus="" ng-model="nuevoEmail" maxlength="40">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id ="password" placeholder="Password" required="" ng-model="nuevoPassword" maxlength="20">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="seccion">Sección</label>
+                        <input type="text" class="form-control" id ="seccion" placeholder="Seccion" required="" autofocus="" ng-model="nuevoSeccion" maxlength="30">
+                    </div>
+                    <a style="color: #e4886a" ng-cloak="">{{incompleto}}</a>
+                    <br>
+                    <button ng-click="submitadm()"><a>Registrar Administrador </a></button>
+
+
+                </section>
             </div>
+
         </div>
-        <h2 style="color: transparent"> a </h2>
-    </div>
+
+    </center>
 
     <!--<div class="container">
         <div class="jumbotron" style="padding-bottom:0px;">

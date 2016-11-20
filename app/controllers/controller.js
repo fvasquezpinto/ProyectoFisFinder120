@@ -4,6 +4,8 @@ var password = '';
 var mail = '';
 var tipo = '';
 var admin= '';
+var seccion= '';
+var notificacion='';
 
 var ang = angular.module("controller", []);
 
@@ -119,7 +121,21 @@ var ang = angular.module("controller", []);
                 .success(function (data) {
                     tipo = data;
                     //$scope.Registrarse = paso;
-                    $window.location.href = '#a';
+                    if(tipo == '0'){
+                        $window.location.href = '#Convergente';
+                    }
+                    else if(tipo == '1'){
+                        $window.location.href = '#Divergente';
+                    }
+                    else if(tipo == '2'){
+                        $window.location.href = '#Adaptador';
+                    }
+                    else if(tipo == '3'){
+                        $window.location.href = '#Asimilador';
+                    }
+                    else{
+                        $window.location.href = '#Test'
+                    }
                 })
                 .error(function (err) {
                     $log.error(err);
@@ -178,6 +194,9 @@ ang.controller('HomeCtrl', function ($scope, $http, $log, $window) {
                                         else if(tipo == '3'){
                                             $window.location.href = '#Asimilador';
                                         }
+                                        else{
+                                            $window.location.href = '#Test'
+                                        }
                                         //$scope.Registrarse = paso;
                                         //$window.location.href = '#Test';
                                     })
@@ -210,32 +229,52 @@ ang.controller('HomeCtrl', function ($scope, $http, $log, $window) {
 });
 
 ang.controller('convergenteCtrl', function ($scope, $http, $log, $window) {
+    if (mail == ''){
+        $window.location.href = '#/home';
+    }
+    $scope.NombreUser = nombre;
+
+});
+
+ang.controller('divergenteCtrl', function ($scope, $http, $log, $window) {
+    if (mail == ''){
+        $window.location.href = '#/home';
+    }
+});
+
+ang.controller('feedbackCtrl', function ($scope, $http, $log, $window) {
     if (nombre == ''){
         $window.location.href = '#/home';
     }
-    $scope.NombreUser = "Francisco Vasquez Pinto";
     $scope.NombreUser = nombre;
-    $scope.submit = function () {
+
+    $scope.submit_feedback = function () {
         var datax = $.param({
-            nombre: $scope.nuevoNombre,
-            rut: $scope.nuevoRut,
-            email: $scope.nuevoEmail,
-            rol: $scope.nuevoRol,
-            clave: $scope.nuevoPassword
+            mensaje: $scope.msg,
+            tipo: tipo
         });
-        $http.post('views/registro2', datax)
+        $http.post('views/agregar_feedback', datax)
             .success(function (data) {
-                mail = data;
-                if( mail != "NO"){
-                    $http.post('views/obtener_nombre', datax)
-                        .success(function (data) {
-                            nombre = data;
-                            //$scope.Registrarse = paso;
-                            $window.location.href = '#Test';
-                        })
-                        .error(function (err) {
-                            $log.error(err);
-                        });
+                notificacion = data;
+                if( notificacion != "NO"){
+                    if(tipo == '0'){
+                        $window.location.href = '#Convergente';
+                    }
+                    else if(tipo == '1'){
+                        $window.location.href = '#Divergente';
+                    }
+                    else if(tipo == '2'){
+                        $window.location.href = '#Adaptador';
+                    }
+                    else if(tipo == '3'){
+                        $window.location.href = '#Asimilador';
+                    }
+                    else{
+                        $window.location.href = '#Test'
+                    }
+                }
+                else{
+
                 }
                 //$scope.Registrarse = paso;
             })
@@ -250,11 +289,13 @@ ang.controller('convergenteCtrl', function ($scope, $http, $log, $window) {
 
 });
 
+
 ang.controller('adminCtrl', function ($scope, $http, $log, $window) {
     if (mail == ''){
         $window.location.href = '#/home';
     }
     $scope.PROFESOR = mail;
+    $scope.observer = notificacion;
 
 });
 ang.controller('consfeedCtrl', function ($scope, $http, $log, $window) {
@@ -269,18 +310,101 @@ ang.controller('mngacsCtrl', function ($scope, $http, $log, $window) {
         $window.location.href = '#/home';
     }
     $scope.PROFESOR = mail;
+
+    $scope.submitadm = function () {
+        var datax = $.param({
+            nombre: $scope.nuevoNombre,
+            rut: $scope.nuevoRut,
+            email: $scope.nuevoEmail,
+            seccion: $scope.nuevoSeccion,
+            clave: $scope.nuevoPassword
+        });
+        $http.post('views/registroadmin', datax)
+            .success(function (data) {
+                notificacion = data;
+                if( notificacion != "NO"){
+
+                }
+                //$scope.Registrarse = paso;
+            })
+            .error(function (err) {
+                $log.error(err);
+            });
+
+
+        //dato = $http.get("views/registro2", data);
+        console.log('Data posted successfully');
+    };
 });
 ang.controller('eliminar_cuentaCtrl', function ($scope, $http, $log, $window) {
     if (mail == ''){
         $window.location.href = '#/home';
     }
     $scope.PROFESOR = mail;
+
+    $http.get('views/eliminar_estudiante')
+        .success(function (data) {
+            $scope.nombres=data;
+        })
+        .error(function (err) {
+            $log.error(err);
+        });
+    $scope.eliminar_cuenta = function () {
+
+        var datax = $.param({
+            email: $scope.nuevoEmail
+        });
+
+        $http.post('views/eliminar_es', datax)
+            .success(function (data) {
+                notificacion = 'Cuenta '+data+' eliminada correctamente';
+                if( notificacion != "NO"){
+
+                }
+                $window.location.href = '#/Admin';
+                //$scope.Registrarse = paso;
+            })
+            .error(function (err) {
+                $log.error(err);
+            });
+
+
+        //dato = $http.get("views/registro2", data);
+        console.log('Data posted successfully');
+    };
+
 });
 ang.controller('modificar_cuentaCtrl', function ($scope, $http, $log, $window) {
     if (mail == ''){
         $window.location.href = '#/home';
     }
     $scope.PROFESOR = mail;
+    $http.get('views/modificar_estudiante')
+        .success(function (data) {
+            $scope.nombres=data;
+        })
+        .error(function (err) {
+            $log.error(err);
+        });
+    $scope.modificar_cuenta = function () {
+
+        var datax = $.param({
+            email: $scope.nuevoEmail,
+            tipo: $scope.nuevoTipo
+        });
+
+        $http.post('views/modificar_es', datax)
+            .success(function (data) {
+                notificacion = 'Cuenta '+data+' modificada correctamente';
+                if( notificacion != "NO"){
+
+                }
+                $window.location.href = '#/Admin';
+            })
+            .error(function (err) {
+                $log.error(err);
+            });
+    };
 });
 ang.controller('consultar_cuentaCtrl', function ($scope, $http, $log, $window) {
     if (mail == ''){
