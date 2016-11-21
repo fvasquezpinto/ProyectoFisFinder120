@@ -13,19 +13,19 @@
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
 <div id="wrapper">
     <!-- Encabezado -->
+
     <header id="header">
         <div class="inner">
 
-            <span class="symbol"><img src="../views/images2/Convergente.png" alt="" /></span>
+            <span class="symbol"> <img src="../views/images2/Convergente.png" alt="" /> <a><h2> {{Usuario}} <!--aqui las pestañas!--></h2></a> </span>
 
             <!-- Barra Nav -->
             <nav>
-                <ul>
-                    <li><a href="#Convergente">Inicio</a></li>
+                <ul class="nav navbar-nav navbar-right">
                     <li><a href="#Feedback">Realizar Feedback</a></li>
+                    <li><a href="#Home">Cerrar Sesión</a></li>
                 </ul>
             </nav>
-
 
         </div>
     </header>
@@ -35,12 +35,13 @@
         <div class="inner">
             <header>
                 <h1>Bienvenid@ a Física General II</h1>
+                <br>
                 <p>Aquí encontrarás material de estudio relacionado con el curso.</p>
             </header>
             <section class="tiles">
-                <article class="style1">
+                <article class="style5">
 									<span class="image">
-										<img src="../views/images2/pic01.jpg" alt="" />
+										<img src="../views/images2/pic05.jpg"alt="" />
 									</span>
                     <a href="#Contenidos">
                         <h2>Contenidos</h2>
@@ -54,28 +55,12 @@
                         <h2>Videos</h2>
                     </a>
                 </article>
-                <article class="style3">
-									<span class="image">
-										<img src="../views/images2/pic03.jpg" alt="" />
-									</span>
-                    <a href="#Ejercicios">
-                        <h2>Ejercicios</h2>
-                    </a>
-                </article>
                 <article class="style4">
 									<span class="image">
 										<img src="../views/images2/pic04.jpg" alt="" />
 									</span>
-                    <a href="#Visorvideo">
-                        <h2>Material 4</h2>
-                    </a>
-                </article>
-                <article class="style5">
-									<span class="image">
-										<img src="../views/images2/pic05.jpg" alt="" />
-									</span>
-                    <a href="#Visorpdf">
-                        <h2>Material 5</h2>
+                    <a href="#Ejercicios">
+                        <h2>Ejercicios</h2>
                     </a>
                 </article>
             </section>
@@ -91,12 +76,7 @@
         </div>
     </footer>
 
-    <!-- Scripts -->
-    <script src="assets2/js/jquery.min.js"></script>
-    <script src="assets2/js/skel.min.js"></script>
-    <script src="assets2/js/util.js"></script>
-    <!--[if lte IE 8]><script src="asset/js/ie/respond.min.js"></script><![endif]-->
-    <script src="assets2/js/main.js"></script>
+
 </div>
 </body>
 </html>

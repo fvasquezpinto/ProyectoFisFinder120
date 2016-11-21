@@ -115,6 +115,10 @@ function encaminar(pedido, respuesta, camino) {
             obtener_nfeedbacks(pedido, respuesta);
             break;
         }
+        case 'app/views/obtener_feedbacks': {
+            obtener_feedbacks(pedido, respuesta);
+            break;
+        }
         case 'views/crear_estudiante': {
             crear_estudiante(pedido, respuesta);
             break;
@@ -843,6 +847,46 @@ function obtener_nfeedbacks(pedido, respuesta) {
 
         });
 
+    });
+}
+
+function obtener_feedbacks(pedido, respuesta) {
+
+    var datos = '';
+    datos += ('\t\t' + 'Opiniones de los Usuarios' + '\t\t');
+    var info = '';
+    pedido.on('data', function (datosparciales) {
+        info += datosparciales;
+    });
+    pedido.on('end', function () {
+        var formulario = querystring.parse(info);
+        respuesta.writeHead(200, {'Content-Type': 'text/html'});
+        var tipe='';
+        connection.query("SELECT * FROM feedback ORDER BY rownum DESC", function (err, rows) {
+            if (err) throw err;
+            datos += '________________________________________________________________'
+            datos += ('\t|\t' + '#' + '\t|\t' + 'Tipo' + '\t|\t' + 'Feedback' + '\t|\t');
+            for (var i = 0; i < rows.length; i++) {
+                if (i==0){
+                    tipe='Convergente'
+                }
+                else if (i==1){
+                    tipe='Divergente'
+                }
+                else if (i==2){
+                    tipe='Adaptador'
+                }
+                else if (i==3){
+                    tipe='Asimilador'
+                }
+                datos += '________________________________________________________________'
+                datos += ('\t|\t' + (rows.length-i).toString() + '\t|\t' + tipe + '\t|\t' + rows[i].Mensaje + '\t|\t');
+            }
+            console.log('---');
+            console.log(datos);
+            console.log('---');
+            respuesta.end(datos);
+        });
     });
 }
 

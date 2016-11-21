@@ -233,7 +233,7 @@ ang.controller('convergenteCtrl', function ($scope, $http, $log, $window) {
     if (mail == ''){
         $window.location.href = '#/home';
     }
-    $scope.NombreUser = nombre;
+    $scope.Usuario = nombre;
 
 });
 
@@ -241,6 +241,21 @@ ang.controller('divergenteCtrl', function ($scope, $http, $log, $window) {
     if (mail == ''){
         $window.location.href = '#/home';
     }
+    $scope.Usuario = nombre;
+});
+
+ang.controller('asimiladorCtrl', function ($scope, $http, $log, $window) {
+    if (mail == ''){
+        $window.location.href = '#/home';
+    }
+    $scope.Usuario = nombre;
+});
+
+ang.controller('adaptadorCtrl', function ($scope, $http, $log, $window) {
+    if (mail == ''){
+        $window.location.href = '#/home';
+    }
+    $scope.Usuario = nombre;
 });
 
 ang.controller('feedbackCtrl', function ($scope, $http, $log, $window) {
@@ -259,18 +274,23 @@ ang.controller('feedbackCtrl', function ($scope, $http, $log, $window) {
                 notificacion = data;
                 if( notificacion != "NO"){
                     if(tipo == '0'){
+                        notificacion='';
                         $window.location.href = '#Convergente';
                     }
                     else if(tipo == '1'){
+                        notificacion='';
                         $window.location.href = '#Divergente';
                     }
                     else if(tipo == '2'){
+                        notificacion='';
                         $window.location.href = '#Adaptador';
                     }
                     else if(tipo == '3'){
+                        notificacion='';
                         $window.location.href = '#Asimilador';
                     }
                     else{
+                        notificacion='';
                         $window.location.href = '#Test'
                     }
                 }
@@ -295,7 +315,13 @@ ang.controller('consfeedCtrl', function ($scope, $http, $log, $window) {
         $window.location.href = '#/home';
     }
     $scope.PROFESOR = mail;
-
+    $http.get('views/obtener_feedbacks')
+        .success(function (data) {
+            $scope.feedbacks=data;
+        })
+        .error(function (err) {
+            $log.error(err);
+        });
 });
 
 ang.controller('adminCtrl', function ($scope, $http, $log, $window) {
@@ -418,6 +444,75 @@ ang.controller('modificar_cuentaCtrl', function ($scope, $http, $log, $window) {
             });
     };
 });
+
+ang.controller('videosCtrl', function ($scope, $http, $log, $window) {
+    if (mail == ''){
+        $window.location.href = '#/home';
+    }
+    $scope.Usuario = nombre;
+
+    $scope.volver = function () {
+        if (tipo == '0') {
+            $window.location.href = '#Convergente';
+        }
+        else if (tipo == '1') {
+            $window.location.href = '#Divergente';
+        }
+        else if (tipo == '2') {
+            $window.location.href = '#Adaptador';
+        }
+        else if (tipo == '3') {
+            $window.location.href = '#Asimilador';
+        }
+    }
+});
+
+ang.controller('contenidosCtrl', function ($scope, $http, $log, $window) {
+    if (mail == ''){
+        $window.location.href = '#/home';
+    }
+    $scope.Usuario = nombre;
+
+    $scope.volver = function () {
+        if (tipo == '0') {
+            $window.location.href = '#Convergente';
+        }
+        else if (tipo == '1') {
+            $window.location.href = '#Divergente';
+        }
+        else if (tipo == '2') {
+            $window.location.href = '#Adaptador';
+        }
+        else if (tipo == '3') {
+            $window.location.href = '#Asimilador';
+        }
+    }
+});
+
+ang.controller('ejerciciosCtrl', function ($scope, $http, $log, $window) {
+    if (mail == ''){
+        $window.location.href = '#/home';
+    }
+    $scope.Usuario = nombre;
+
+    $scope.volver = function () {
+        if (tipo == '0') {
+            $window.location.href = '#Convergente';
+        }
+        else if (tipo == '1') {
+            $window.location.href = '#Divergente';
+        }
+        else if (tipo == '2') {
+            $window.location.href = '#Adaptador';
+        }
+        else if (tipo == '3') {
+            $window.location.href = '#Asimilador';
+        }
+    }
+});
+
+
+
 ang.controller('consultar_cuentaCtrl', function ($scope, $http, $log, $window) {
     if (mail == ''){
         $window.location.href = '#/home';
