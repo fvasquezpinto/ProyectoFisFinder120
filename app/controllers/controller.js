@@ -7,6 +7,7 @@ var admin = '';
 var seccion = '';
 var notificacion ='';
 var nfeedbacks = '';
+var superadmin= '';
 
 var ang = angular.module("controller", []);
 
@@ -146,7 +147,16 @@ var ang = angular.module("controller", []);
     });
 
 ang.controller('HomeCtrl', function ($scope, $http, $log, $window) {
-
+    nombre = '';
+    rut = '';
+    password = '';
+    mail = '';
+    tipo = '';
+    admin = '';
+    seccion = '';
+    notificacion ='';
+    nfeedbacks = '';
+    superadmin= '';
 
     $scope.login = function () {
         var datax = $.param({
@@ -170,13 +180,11 @@ ang.controller('HomeCtrl', function ($scope, $http, $log, $window) {
                         .error(function (err) {
                             $log.error(err);
                         });
-
                     $http.post('views/obtener_admin', datax)
                         .success(function (data) {
-                            admin = data;
+                            superadmin = data;
                             $scope.prueba = admin;
-                            if (admin == '1'){
-
+                            if (superadmin == '0' || superadmin == '1'){
                                 $window.location.href = '#Admin';
                             }
                             else{
@@ -206,6 +214,7 @@ ang.controller('HomeCtrl', function ($scope, $http, $log, $window) {
                                     });
 
                             }
+
                             //$scope.Registrarse = paso;
                             //$window.location.href = '#Test';
                         })
@@ -214,12 +223,16 @@ ang.controller('HomeCtrl', function ($scope, $http, $log, $window) {
                         });
 
                 }
+                else {
+                    $scope.error = 'Error al ingresar Usuario o Contraseña'
+                }
                 //$scope.Registrarse = paso;
             })
             .error(function (err) {
                 $log.error(err);
                 //$scope.prueba = 'sadasd';
             });
+        $scope.error = 'Error al ingresar Usuario o Contraseña';
         //$scope.prueba = 'sadasd';
 
 
@@ -230,7 +243,8 @@ ang.controller('HomeCtrl', function ($scope, $http, $log, $window) {
 });
 
 ang.controller('convergenteCtrl', function ($scope, $http, $log, $window) {
-    if (mail == ''){
+    notificacion ='';
+    if (tipo != '0' && superadmin != '0' && superadmin != '1'){
         $window.location.href = '#/home';
     }
     $scope.Usuario = nombre;
@@ -238,29 +252,39 @@ ang.controller('convergenteCtrl', function ($scope, $http, $log, $window) {
 });
 
 ang.controller('divergenteCtrl', function ($scope, $http, $log, $window) {
-    if (mail == ''){
+    notificacion ='';
+    if (tipo != '1' && superadmin != '0' && superadmin != '1'){
         $window.location.href = '#/home';
     }
     $scope.Usuario = nombre;
 });
 
 ang.controller('asimiladorCtrl', function ($scope, $http, $log, $window) {
-    if (mail == ''){
+    notificacion ='';
+    if (tipo != '2' && superadmin != '0' && superadmin != '1'){
         $window.location.href = '#/home';
     }
     $scope.Usuario = nombre;
 });
 
 ang.controller('adaptadorCtrl', function ($scope, $http, $log, $window) {
-    if (mail == ''){
+    notificacion ='';
+    if (tipo != '3' && superadmin != '0' && superadmin != '1'){
         $window.location.href = '#/home';
     }
     $scope.Usuario = nombre;
 });
 
 ang.controller('feedbackCtrl', function ($scope, $http, $log, $window) {
-    if (nombre == ''){
-        $window.location.href = '#/home';
+    notificacion ='';
+    if (tipo != '0' && tipo != '1' && tipo != '2' && tipo != '3'){
+        if(superadmin != '0' || superadmin != '1'){
+            $window.location.href = '#/Admin';
+        }
+        else{
+            $window.location.href = '#/home';
+        }
+
     }
     $scope.NombreUser = nombre;
 
@@ -311,7 +335,8 @@ ang.controller('feedbackCtrl', function ($scope, $http, $log, $window) {
 });
 
 ang.controller('consfeedCtrl', function ($scope, $http, $log, $window) {
-    if (mail == ''){
+    notificacion ='';
+    if (superadmin != '0' && superadmin != '1'){
         $window.location.href = '#/home';
     }
     $scope.PROFESOR = mail;
@@ -325,10 +350,11 @@ ang.controller('consfeedCtrl', function ($scope, $http, $log, $window) {
 });
 
 ang.controller('adminCtrl', function ($scope, $http, $log, $window) {
-    if (mail == ''){
+    if (superadmin != '0' && superadmin != '1'){
         $window.location.href = '#/home';
     }
     $scope.PROFESOR = mail;
+    $scope.supera = superadmin;
     $scope.observer = notificacion;
 
     $http.get('views/obtener_nfeedbacks')
@@ -338,14 +364,20 @@ ang.controller('adminCtrl', function ($scope, $http, $log, $window) {
         .error(function (err) {
             $log.error(err);
         });
-
     $scope.nrofeedbacks = nfeedbacks;
-
+    
 });
 
 ang.controller('mngacsCtrl', function ($scope, $http, $log, $window) {
-    if (mail == ''){
-        $window.location.href = '#/home';
+    notificacion ='';
+    if (superadmin != '1'){
+        if(superadmin == '0'){
+            notificacion = 'No tiene permisos para realizar la acción';
+            $window.location.href = '#/Admin';
+        }
+        else {
+            $window.location.href = '#/home';
+        }
     }
     $scope.PROFESOR = mail;
 
@@ -375,8 +407,15 @@ ang.controller('mngacsCtrl', function ($scope, $http, $log, $window) {
     };
 });
 ang.controller('eliminar_cuentaCtrl', function ($scope, $http, $log, $window) {
-    if (mail == ''){
-        $window.location.href = '#/home';
+    notificacion ='';
+    if (superadmin != '1'){
+        if(superadmin == '0'){
+            notificacion = 'No tiene permisos para realizar la acción';
+            $window.location.href = '#/Admin';
+        }
+        else {
+            $window.location.href = '#/home';
+        }
     }
     $scope.PROFESOR = mail;
 
@@ -413,8 +452,15 @@ ang.controller('eliminar_cuentaCtrl', function ($scope, $http, $log, $window) {
 
 });
 ang.controller('modificar_cuentaCtrl', function ($scope, $http, $log, $window) {
-    if (mail == ''){
-        $window.location.href = '#/home';
+    notificacion ='';
+    if (superadmin != '1'){
+        if(superadmin == '0'){
+            notificacion = 'No tiene permisos para realizar la acción';
+            $window.location.href = '#/Admin';
+        }
+        else {
+            $window.location.href = '#/home';
+        }
     }
     $scope.PROFESOR = mail;
     $http.get('views/modificar_estudiante')
@@ -446,7 +492,8 @@ ang.controller('modificar_cuentaCtrl', function ($scope, $http, $log, $window) {
 });
 
 ang.controller('videosCtrl', function ($scope, $http, $log, $window) {
-    if (mail == ''){
+    notificacion ='';
+    if (tipo != '0' && tipo != '1' && tipo != '2' && tipo != '3'){
         $window.location.href = '#/home';
     }
     $scope.Usuario = nombre;
@@ -468,7 +515,8 @@ ang.controller('videosCtrl', function ($scope, $http, $log, $window) {
 });
 
 ang.controller('contenidosCtrl', function ($scope, $http, $log, $window) {
-    if (mail == ''){
+    notificacion ='';
+    if (tipo != '0' && tipo != '1' && tipo != '2' && tipo != '3'){
         $window.location.href = '#/home';
     }
     $scope.Usuario = nombre;
@@ -490,7 +538,8 @@ ang.controller('contenidosCtrl', function ($scope, $http, $log, $window) {
 });
 
 ang.controller('ejerciciosCtrl', function ($scope, $http, $log, $window) {
-    if (mail == ''){
+    notificacion ='';
+    if (tipo != '0' && tipo != '1' && tipo != '2' && tipo != '3'){
         $window.location.href = '#/home';
     }
     $scope.Usuario = nombre;

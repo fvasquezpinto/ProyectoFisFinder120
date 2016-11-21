@@ -319,16 +319,18 @@ function obtener_admin(pedido, respuesta) {
         //console.log(formulario);
         //console.log(formulario["mail"]);
         //console.log(toString(formulario['mail']));
-        connection.query("SELECT * FROM estudiante WHERE Email = ?", formulario['email'], function (err, rows) {
+        connection.query("SELECT * FROM administrador WHERE Email = ?", formulario['email'], function (err, rows) {
             if (err) throw err;
+            console.log(formulario);
             if (rows.length != 0) {
                 respuesta.writeHead(200, {'Content-Type': 'text/html'});
                 for (var i = 0; i < rows.length; i++) {
-                    respuesta.end('0');
+                    console.log(rows[i].SuperAdmin);
+                    respuesta.end(rows[i].SuperAdmin.toString());
                 }
             }
             else {
-                respuesta.end('1');
+                respuesta.end('NO');
             }
         });
 
@@ -841,8 +843,9 @@ function obtener_nfeedbacks(pedido, respuesta) {
     });
     pedido.on('end', function () {
         respuesta.writeHead(200, {'Content-Type': 'text/html'});
-        connection.query("SELECT * FROM feedback WHERE revisado = '0'", function (err, rows) {
+        connection.query("SELECT * FROM feedback WHERE Revisado = '0'", function (err, rows) {
             if (err) throw err;
+            console.log(rows.length.toString());
             respuesta.end(rows.length.toString());
 
         });
