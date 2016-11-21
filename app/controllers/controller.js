@@ -8,6 +8,7 @@ var seccion = '';
 var notificacion ='';
 var nfeedbacks = '';
 var superadmin= '';
+var switsh = '0';
 
 var ang = angular.module("controller", []);
 
@@ -240,6 +241,14 @@ ang.controller('HomeCtrl', function ($scope, $http, $log, $window) {
         console.log('Data posted successfully');
     };
 
+    $http.get('views/obtener_nfeedbacks')
+        .success(function (data) {
+            nfeedbacks= data;
+        })
+        .error(function (err) {
+            $log.error(err);
+        });
+
 });
 
 ang.controller('convergenteCtrl', function ($scope, $http, $log, $window) {
@@ -356,16 +365,7 @@ ang.controller('adminCtrl', function ($scope, $http, $log, $window) {
     $scope.PROFESOR = mail;
     $scope.supera = superadmin;
     $scope.observer = notificacion;
-
-    $http.get('views/obtener_nfeedbacks')
-        .success(function (data) {
-            nfeedbacks= data;
-        })
-        .error(function (err) {
-            $log.error(err);
-        });
     $scope.nrofeedbacks = nfeedbacks;
-    
 });
 
 ang.controller('mngacsCtrl', function ($scope, $http, $log, $window) {
