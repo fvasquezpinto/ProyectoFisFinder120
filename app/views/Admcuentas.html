@@ -1,28 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html>
 <head>
-    <!-- Theme Made By www.w3schools.com - No Copyright -->
-    <title>Nuevo Admin</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            $("#flip").click(function(){
-                $("#panel").slideToggle("slow");
-            });
-        });
-    </script>
+    <title>FisFinder 120</title>
     <style>
         body {
             font: 400 15px Lato, sans-serif;
@@ -152,7 +131,7 @@
             margin: 0;
             padding: 0;
             overflow: visible;
-            background-color: #333;
+            background-color: white;
         }
 
         li {
@@ -161,14 +140,14 @@
 
         li a, .dropbtn {
             display: inline-block;
-            color: white;
+            color: black;
             text-align: center;
             padding: 14px 16px;
             text-decoration: none;
         }
 
         li a:hover, .dropdown:hover .dropbtn {
-            background-color: darkslategray;
+            background-color: white;
         }
 
         li.dropdown {
@@ -178,13 +157,13 @@
         .dropdown-content {
             display: none;
             position: absolute;
-            background-color: #555555;
+            background-color: white;
             min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            box-shadow: 0px 8px 16px 0px rgba(255,255,255,1.1);
         }
 
         .dropdown-content a {
-            color: white;
+            color: black;
             padding: 12px 10px;
             text-decoration: none;
             display: block;
@@ -197,17 +176,21 @@
             display: block;
         }
 
+        .center {
+            margin: auto;
+            width: 25%;;
+            padding: 0px;
+        }
     </style>
 
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
-
 <ul>
     <li><a href="#/">Cerrar Sesión</a></li>
 
 
     <li class="dropdown">
-        <a class="dropbtn">Herramientas</a>
+        <a href="#Admin" class="dropbtn">Herramientas</a>
         <div class="dropdown-content">
             <a href="#Mi_cuenta">Mi Cuenta</a>
             <a href="#Consultar_usuarios">Ver Usuarios</a>
@@ -216,14 +199,14 @@
         </div>
     </li>
     <li class="dropdown">
-        <a class="dropbtn">Contenidos</a>
+        <a href="#Admin" class="dropbtn">Contenidos</a>
         <div class="dropdown-content">
             <a href="#Agregar_contenido">Agregar</a>
             <a href="#Eliminar_contenido">Eliminar</a>
         </div>
     </li>
     <li class="dropdown">
-        <a class="dropbtn">Módulos</a>
+        <a href="#Admin" class="dropbtn">Módulos</a>
         <div class="dropdown-content">
             <a href="#Convergente">Convergente</a>
             <a href="#Divergente">Divergente</a>
@@ -232,115 +215,71 @@
         </div>
     </li>
     <li class="dropdown">
-        <a class="dropbtn">Administrar Cuentas</a>
+        <a href="#Admin" class="dropbtn">Administrar Cuentas</a>
         <div class="dropdown-content">
             <a href="#Mngacs">Crear nuevo Administrador</a>
             <a href="#Eliminaracc">Eliminar una Cuenta</a>
             <a href="#Modificaracc">Modificar una Cuenta</a>
-            <a href="#Consultaracc">Consultar una Cuenta</a>
         </div>
     </li>
+
     <li><a href="#Consfeed">Consultar Feedback</a></li>
 </ul>
+<br>
+<br>
+<br>
+<br>
+<div id="wrapper">
 
+    <!-- Main -->
+    <div id="main">
+        <div class="inner">
+            <header>
+                <h1>Crear una cuenta Administrador</h1>
+            </header>
 
-<div class="jumbotron text-center" style="width: auto; height: auto;" >
-    <h5>Crear una Cuenta Administrador</h5>
-    <h2 style="color: transparent"> a </h2>
-    <!--<h2 style="color: transparent"> a </h2>-->
-    <div class="col-sm-3" style="border: solid;background-color: #303030">
-        <h3 style="color: transparent"> a </h3>
-        <h4 style="color: snow; font-style: italic"> Sesión Iniciada: </h4>
-        <h4 style="color: snow">  </h4>{{PROFESOR}}
-        <h4 style="color: snow"> Administrador</h4>
-        <h4> </h4>
-        <h1> </h1>
-    </div>
-    <center>
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control"  id = "nombre" placeholder="Nombre" required="" autofocus="" ng-model="nuevoNombre" maxlength="30">
 
-        <div style="width: 300px; height: 700px;">
-            <div>
-
-                <section>
-
-                    <div class="form-group">
-                        <label for="nombre">Nombre</label>
-                        <input type="text" class="form-control"  id = "nombre" placeholder="Nombre" required="" autofocus="" ng-model="nuevoNombre" maxlength="30">
-
-                    </div>
-
-                    <div class="form-group">
-                        <label for="rut">Rut</label>
-                        <input type="text" class="form-control" id ="rut" placeholder="Rut (ej: 19911133-0)" required="" ng-model="nuevoRut" maxlength="10">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" class="form-control" id ="email"  placeholder="Email" required="" autofocus="" ng-model="nuevoEmail" maxlength="40">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control" id ="password" placeholder="Password" required="" ng-model="nuevoPassword" maxlength="20">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="seccion">Sección</label>
-                        <input type="text" class="form-control" id ="seccion" placeholder="Seccion" required="" autofocus="" ng-model="nuevoSeccion" maxlength="30">
-                    </div>
-                    <a style="color: #e4886a" ng-cloak="">{{incompleto}}</a>
-                    <br>
-                    <button ng-click="submitadm()"><a>Registrar Administrador </a></button>
-
-
-                </section>
             </div>
-
+            <br>
+            <div class="form-group">
+                <label for="rut">Rut</label>
+                <input type="text" class="form-control" id ="rut" placeholder="Rut (ej: 12345678-9)" required="" ng-model="nuevoRut" maxlength="10">
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id ="email"  placeholder="Email" required="" autofocus="" ng-model="nuevoEmail" maxlength="40">
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id ="password" placeholder="Password" required="" ng-model="nuevoPassword" maxlength="20">
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="seccion">Sección</label>
+                <input type="text" class="form-control" id ="seccion" placeholder="Seccion" required="" autofocus="" ng-model="nuevoSeccion" maxlength="30">
+            </div>
+            <br>
+            <button ng-click="submitadm()"><a>Registrar Administrador </a></button>
         </div>
-
-    </center>
-
-    <!--<div class="container">
-        <div class="jumbotron" style="padding-bottom:0px;">
-            <h2>FisFinder120</h2>
-        </div>
-        <form class="form-signin" role="form">
-            <input type="email" class="form-control" placeholder="Email" required="" autofocus="">
-            <input type="password" class="form-control" placeholder="Password" required="">
-            <label class="checkbox">
-                <a href="#"> Registrarse</a>
-            </label>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
-        </form>
-
-    </div>-->
-
-
-    <!-- Container (Contact Section) -->
-    <div id="contact" class="container-fluid bg-grey">
-        <h2 class="text-center">Fisica General II</h2>
-        <h3 class="text-center">Profesor Maximiliano Rivera</h3>
-        <h4 class="text-center">UTFSM CSJ</h4>
-
-        <!--<div class="col-sm-7 slideanim">
-            <div class="row">
-                <div class="col-sm-6 form-group">
-                    <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
-                </div>
-                <div class="col-sm-6 form-group">
-                    <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
-                </div>
-            </div>
-            <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea><br>
-            <div class="row">
-                <div class="col-sm-12 form-group">
-                    <button class="btn btn-default pull-right" type="submit">Send</button>
-                </div>
-            </div>
-        </div>-->
     </div>
+
+    <!-- Pie -->
+    <footer>
+        <div id="contact" class="container-fluid bg-grey">
+            <h2 class="text-center" align="center">Fisica General II</h2>
+            <h3 class="text-center" align="center">Profesor Maximiliano Rivera</h3>
+            <h4 class="text-center" align="center">UTFSM CSJ</h4>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+
+
 </div>
-
-
 </body>
 </html>

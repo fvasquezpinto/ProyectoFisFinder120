@@ -8,7 +8,6 @@
     <title>FisFinder120</title>
     <link rel="stylesheet" href="views/assets2/css/main.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
 
@@ -19,7 +18,7 @@
     <script src="bower_components/angular-route/angular-route.min.js"></script>
     <script src="controllers/app.js"></script>
     <script src="controllers/controller.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
 
 
   </head>
@@ -46,7 +45,13 @@
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-
+<script>
+  $(document).ready(function(){
+    $("#flip").click(function(){
+      $("#panel").slideToggle("slow");
+    });
+  });
+</script>
 <script src="views/assets2/js/jquery.min.js"></script>
 <script src="views/assets2/js/skel.min.js"></script>
 <script src="views/assets2/js/util.js"></script>

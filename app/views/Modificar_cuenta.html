@@ -1,28 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html>
 <head>
-    <!-- Theme Made By www.w3schools.com - No Copyright -->
-    <title>FisFinder120</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            $("#flip").click(function(){
-                $("#panel").slideToggle("slow");
-            });
-        });
-    </script>
+    <title>FisFinder 120</title>
     <style>
         body {
             font: 400 15px Lato, sans-serif;
@@ -117,7 +96,7 @@
         #panel, #flip {
             padding: 5px;
             text-align: center;
-            background-color: transparent;
+            background-color: transparent ;
             border: solid 1px #c3c3c3;
         }
 
@@ -152,7 +131,7 @@
             margin: 0;
             padding: 0;
             overflow: visible;
-            background-color: #333;
+            background-color: white;
         }
 
         li {
@@ -161,14 +140,14 @@
 
         li a, .dropbtn {
             display: inline-block;
-            color: white;
+            color: black;
             text-align: center;
             padding: 14px 16px;
             text-decoration: none;
         }
 
         li a:hover, .dropdown:hover .dropbtn {
-            background-color: darkslategray;
+            background-color: white;
         }
 
         li.dropdown {
@@ -178,13 +157,13 @@
         .dropdown-content {
             display: none;
             position: absolute;
-            background-color: #555555;
+            background-color: white;
             min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            box-shadow: 0px 8px 16px 0px rgba(255,255,255,1.1);
         }
 
         .dropdown-content a {
-            color: white;
+            color: black;
             padding: 12px 10px;
             text-decoration: none;
             display: block;
@@ -197,11 +176,15 @@
             display: block;
         }
 
+        .center {
+            margin: auto;
+            width: 25%;;
+            padding: 0px;
+        }
     </style>
 
 </head>
-<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
-
+<body>
 <ul>
     <li><a href="#/">Cerrar Sesión</a></li>
 
@@ -237,92 +220,53 @@
             <a href="#Mngacs">Crear nuevo Administrador</a>
             <a href="#Eliminaracc">Eliminar una Cuenta</a>
             <a href="#Modificaracc">Modificar una Cuenta</a>
-            <a href="#Consultaracc">Consultar una Cuenta</a>
         </div>
     </li>
 
     <li><a href="#Consfeed">Consultar Feedback</a></li>
 </ul>
+<header></header>
+<br>
+<br>
+<br>
+<br>
+<div id="wrapper">
 
+    <!-- Main -->
+    <div id="main">
+        <div class="inner">
+            <header>
+                <h1>Modificar tipo de estudiante</h1>
+                <p>Ingrese email y nuevo tipo de la cuenta a modificar.</p>
+            </header>
 
-<div class="jumbotron text-center" style="width: auto; height: auto;" >
-    <h5>Modificar tipo de Estudiante</h5>
-
-    <center>
-        <h4>Ingrese Email y nuevo Tipo de la cuenta a modificar</h4>
-        <br>
-        <div style="width: 300px; height: 370px;">
-            <div>
-                <section>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" class="form-control" id ="email"  placeholder="Email" required="" autofocus="" ng-model="nuevoEmail" maxlength="40">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="tipo">Tipo de Estudiante que asignará</label>
-                        <h6>0: Convergente <br> 1: Divergente  2: Adaptador   3: Asimilador</h6>
-                        <input type="text" class="form-control" id ="tipo"  placeholder="Tipo (ej: 1)" required="" autofocus="" ng-model="nuevoTipo" maxlength="1">
-                    </div>
-                    <a style="color: #e4886a" ng-cloak="">{{incompleto}}</a>
-                    <br>
-                    <button ng-click="modificar_cuenta()"><a>Modificar Cuenta</a></button>
-                </section>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id ="email"  placeholder="Email" required="" autofocus="" ng-model="nuevoEmail" maxlength="40">
             </div>
-        </div>
-    </center>
-
-    <center>
-        <div style="width: 700px; height: auto;">
-            <h3>Cuentas Existentes</h3>
             <br>
-            {{nombres}}
-        </div>
-    </center>
-    <br>
-    <br>
-
-    <!--<div class="container">
-        <div class="jumbotron" style="padding-bottom:0px;">
-            <h2>FisFinder120</h2>
-        </div>
-        <form class="form-signin" role="form">
-            <input type="email" class="form-control" placeholder="Email" required="" autofocus="">
-            <input type="password" class="form-control" placeholder="Password" required="">
-            <label class="checkbox">
-                <a href="#"> Registrarse</a>
-            </label>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
-        </form>
-
-    </div>-->
-
-
-    <!-- Container (Contact Section) -->
-    <div id="contact" class="container-fluid bg-grey">
-        <h2 class="text-center">Fisica General II</h2>
-        <h3 class="text-center">Profesor Maximiliano Rivera</h3>
-        <h4 class="text-center">UTFSM CSJ</h4>
-
-        <!--<div class="col-sm-7 slideanim">
-            <div class="row">
-                <div class="col-sm-6 form-group">
-                    <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
-                </div>
-                <div class="col-sm-6 form-group">
-                    <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
-                </div>
+            <div class="form-group">
+                <label for="tipo">Tipo</label>
+                <input type="text" class="form-control" id ="tipo"  placeholder="Tipo (0: Convergente,  1: Divergente,  2: Adaptador,  3: Asimilador)" required="" autofocus="" ng-model="nuevoTipo" maxlength="1">
             </div>
-            <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea><br>
-            <div class="row">
-                <div class="col-sm-12 form-group">
-                    <button class="btn btn-default pull-right" type="submit">Send</button>
-                </div>
-            </div>
-        </div>-->
+            <a style="color: #e4886a" ng-cloak="">{{incompleto}}</a>
+            <br>
+            <button ng-click="modificar_cuenta()"><a>Modificar Cuenta</a></button>
+
+
+        </div>
     </div>
+
+    <!-- Pie -->
+    <footer>
+        <div id="contact" class="container-fluid bg-grey">
+            <h2 class="text-center" align="center">Fisica General II</h2>
+            <h3 class="text-center" align="center">Profesor Maximiliano Rivera</h3>
+            <h4 class="text-center" align="center">UTFSM CSJ</h4>
+        </div>
+    </footer>
+
+
 </div>
-
-
 </body>
 </html>
