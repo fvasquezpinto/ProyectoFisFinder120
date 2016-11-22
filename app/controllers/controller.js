@@ -520,7 +520,7 @@ ang.controller('modificar_cuentaCtrl', function ($scope, $http, $log, $window) {
 
 ang.controller('videosCtrl', function ($scope, $http, $log, $window) {
     notificacion ='';
-    if (tipo != '0' && tipo != '1' && tipo != '2' && tipo != '3'){
+    if (tipo != '0' && tipo != '1' && tipo != '2' && tipo != '3' && superadmin != '0' && superadmin != '1'){
         $window.location.href = '#/home';
     }
     $scope.Usuario = nombre;
@@ -543,7 +543,7 @@ ang.controller('videosCtrl', function ($scope, $http, $log, $window) {
 
 ang.controller('contenidosCtrl', function ($scope, $http, $log, $window) {
     notificacion ='';
-    if (tipo != '0' && tipo != '1' && tipo != '2' && tipo != '3'){
+    if (tipo != '0' && tipo != '1' && tipo != '2' && tipo != '3' && superadmin != '0' && superadmin != '1'){
         $window.location.href = '#/home';
     }
     $scope.Usuario = nombre;
@@ -566,7 +566,7 @@ ang.controller('contenidosCtrl', function ($scope, $http, $log, $window) {
 
 ang.controller('ejerciciosCtrl', function ($scope, $http, $log, $window) {
     notificacion ='';
-    if (tipo != '0' && tipo != '1' && tipo != '2' && tipo != '3'){
+    if (tipo != '0' && tipo != '1' && tipo != '2' && tipo != '3' && superadmin != '0' && superadmin != '1'){
         $window.location.href = '#/home';
     }
     $scope.Usuario = nombre;
@@ -587,49 +587,50 @@ ang.controller('ejerciciosCtrl', function ($scope, $http, $log, $window) {
     }
 });
 
-
-
-ang.controller('consultar_cuentaCtrl', function ($scope, $http, $log, $window) {
-    if (mail == ''){
+ang.controller('acerca_deCtrl', function ($scope, $http, $log, $window) {
+    if (superadmin != '0' && superadmin != '1'){
         $window.location.href = '#/home';
     }
     $scope.PROFESOR = mail;
 });
+
+ang.controller('modulosCtrl', function ($scope, $http, $log, $window) {
+    if (superadmin != '0' && superadmin != '1'){
+        $window.location.href = '#/home';
+    }
+    $scope.PROFESOR = mail;
+});
+
 ang.controller('agregar_contenidoCtrl', function ($scope, $http, $log, $window) {
-    if (mail == ''){
+    if (superadmin != '0' && superadmin != '1'){
         $window.location.href = '#/home';
     }
     $scope.PROFESOR = mail;
 });
 ang.controller('eliminar_contenidoCtrl', function ($scope, $http, $log, $window) {
-    if (mail == ''){
+    if (superadmin != '0' && superadmin != '1'){
         $window.location.href = '#/home';
     }
     $scope.PROFESOR = mail;
 });
 ang.controller('mi_cuentaCtrl', function ($scope, $http, $log, $window) {
-    if (mail == ''){
+    if (superadmin != '0' && superadmin != '1'){
         $window.location.href = '#/home';
     }
     $scope.PROFESOR = mail;
 });
 
 ang.controller('consultar_usuariosCtrl', function ($scope, $http, $log, $window) {
-    if (mail == ''){
+    if (superadmin != '0' && superadmin != '1'){
         $window.location.href = '#/home';
     }
     $scope.PROFESOR = mail;
 });
 
 ang.controller('consultar_administradoresCtrl', function ($scope, $http, $log, $window) {
-    if (mail == ''){
+    if (superadmin != '0' && superadmin != '1'){
         $window.location.href = '#/home';
     }
     $scope.PROFESOR = mail;
 });
-ang.controller('acerca_deCtrl', function ($scope, $http, $log, $window) {
-    if (mail == ''){
-        $window.location.href = '#/home';
-    }
-    $scope.PROFESOR = mail;
-});
+
