@@ -273,18 +273,30 @@
     <div id="main">
         <div class="inner">
             <header>
-                <h1>Eliminar cuenta</h1>
-                <p>Ingrese email de la cuenta a eliminar.</p>
+                <h1>Agregar Contenido</h1>
+                <p>Ingrese tipo y URL del material que desea agregar.</p>
+                <br>
             </header>
-
+            <form>
+                <select ng-model="tipoContenido">
+                    <option value="">Click Aquí para desplegar opciones
+                    <option value="video">Video
+                    <option value="apunte">Apunte PDF
+                    <option value="ejercicios">Ejercicios PDF
+                </select>
+            </form>
             <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" id ="email"  placeholder="Email" required="" autofocus="" ng-model="nuevoEmail" maxlength="40">
+                <label for="url">URL</label>
+                <input type="text" class="form-control" id ="url"  placeholder="Ej: https://www.youtube.com/watch?v=-17h1YEGPbc" required="" autofocus="" ng-model="nuevoURL" maxlength="200">
+            </div>
+            <div class="form-group">
+                <label for="titulo">Título</label>
+                <input type="text" class="form-control" id ="titulo"  placeholder="Ej: Electromagnetismo II" required="" autofocus="" ng-model="nuevoTitulo" maxlength="100">
             </div>
 
             <a style="color: #e4886a" ng-cloak="">{{incompleto}}</a>
             <br>
-            <button ng-click="agregar_contenido()"><a>Eliminar Cuenta</a></button>
+            <button ng-click="agregar_contenido()"><a>Agregar Contenido</a></button>
 
 
         </div>

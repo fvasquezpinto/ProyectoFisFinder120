@@ -115,8 +115,20 @@ function encaminar(pedido, respuesta, camino) {
             obtener_nfeedbacks(pedido, respuesta);
             break;
         }
+        case 'app/views/agregar_contenido': {
+            agregar_contenido(pedido, respuesta);
+            break;
+        }
         case 'app/views/obtener_feedbacks': {
             obtener_feedbacks(pedido, respuesta);
+            break;
+        }
+        case 'app/views/obtener_link': {
+            obtener_link(pedido, respuesta);
+            break;
+        }
+        case 'app/views/obtener_titulo': {
+            obtener_titulo(pedido, respuesta);
             break;
         }
         case 'views/crear_estudiante': {
@@ -890,6 +902,77 @@ function obtener_feedbacks(pedido, respuesta) {
             console.log('---');
             respuesta.end(datos);
         });
+    });
+}
+
+function agregar_contenido(pedido, respuesta) {
+    var dato = '';
+    var info = '';
+    pedido.on('data', function (datosparciales) {
+        info += datosparciales;
+    });
+    pedido.on('end', function () {
+        var formulario = querystring.parse(info);
+        respuesta.writeHead(200, {'Content-Type': 'text/html'});
+        //console.log(formulario);
+        //console.log(formulario["mail"]);
+        //console.log(toString(formulario['mail']));
+        console.log(formulario['tipo_edte']);
+        var datos = {
+            titulo: formulario['titulo'],
+            url: formulario['url'],
+            posicion: formulario['tipo_edte'],
+            tipo: formulario['tipo_cont']
+
+        };
+        connection.query("INSERT INTO contenido SET ?", datos, function (err, rows) {
+            if (err) throw err;
+            //console.log(formulario['email']);
+            respuesta.end('SI');
+        });
+    });
+}
+
+function obtener_link(pedido, respuesta) {
+    var info = '';
+    pedido.on('data', function (datosparciales) {
+        info += datosparciales;
+    });
+    pedido.on('end', function () {
+        respuesta.writeHead(200, {'Content-Type': 'text/html'});
+        connection.query("SELECT * FROM contenido", function (err, rows) {
+            if (err) throw err;
+            if (rows.length == 0) {
+                respuesta.end('NO');
+            }
+            else {
+                console.log(rows[rows.length - 1].URL);
+                respuesta.end(rows[rows.length - 1].URL);
+            }
+        });
+
+    });
+}
+
+function obtener_titulo(pedido, respuesta) {
+    var info = '';
+    pedido.on('data', function (datosparciales) {
+        info += datosparciales;
+    });
+    pedido.on('end', function () {
+        respuesta.writeHead(200, {'Content-Type': 'text/html'});
+        connection.query("SELECT * FROM contenido", function (err, rows) {
+            if (err) throw err;
+            if (rows.length == 0){
+                respuesta.end('NO');
+            }
+            else {
+                console.log(rows[rows.length - 1].Titulo);
+                respuesta.end(rows[rows.length - 1].Titulo);
+            }
+
+        });
+
     });
 }
 

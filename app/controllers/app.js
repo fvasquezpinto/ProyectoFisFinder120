@@ -55,7 +55,7 @@ angularRoutingApp.config(function($routeProvider) {
       })
       .when('/Contenidos', {
           templateUrl : '../views/contenidos.html',
-          controller  : 'contactController'
+          controller  : 'contenidosCtrl'
       })
       .when('/Feedback', {
           templateUrl : '../views/Feedback.html',

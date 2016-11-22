@@ -8,6 +8,7 @@ var seccion = '';
 var notificacion ='';
 var nfeedbacks = '';
 var superadmin= '';
+var tipo_es = '';
 
 var ang = angular.module("controller", []);
 
@@ -283,7 +284,7 @@ ang.controller('divergenteCtrl', function ($scope, $http, $log, $window) {
 
 ang.controller('asimiladorCtrl', function ($scope, $http, $log, $window) {
     notificacion ='';
-    if (tipo != '2' && superadmin != '0' && superadmin != '1'){
+    if (tipo != '3' && superadmin != '0' && superadmin != '1'){
         $window.location.href = '#/home';
     }
 
@@ -298,7 +299,7 @@ ang.controller('asimiladorCtrl', function ($scope, $http, $log, $window) {
 
 ang.controller('adaptadorCtrl', function ($scope, $http, $log, $window) {
     notificacion ='';
-    if (tipo != '3' && superadmin != '0' && superadmin != '1'){
+    if (tipo != '2' && superadmin != '0' && superadmin != '1'){
         $window.location.href = '#/home';
     }
 
@@ -562,7 +563,34 @@ ang.controller('contenidosCtrl', function ($scope, $http, $log, $window) {
         else if (tipo == '3') {
             $window.location.href = '#Asimilador';
         }
-    }
+    };
+
+    $http.get('views/obtener_link')
+        .success(function (data) {
+
+            if( data != "NO"){
+                $scope.link = data;
+                $scope.swit = 'mostrar';
+
+            }
+
+        })
+        .error(function (err) {
+            $log.error(err);
+        });
+    $http.get('views/obtener_titulo')
+        .success(function (data) {
+
+            if( data != "NO"){
+                $scope.titulo = data;
+            }
+
+        })
+        .error(function (err) {
+            $log.error(err);
+        });
+
+
 });
 
 ang.controller('ejerciciosCtrl', function ($scope, $http, $log, $window) {
@@ -599,8 +627,20 @@ ang.controller('modulosCtrl', function ($scope, $http, $log, $window) {
     if (superadmin != '0' && superadmin != '1'){
         $window.location.href = '#/home';
     }
-
     $scope.PROFESOR = mail;
+    $scope.modulo0 = function () {
+        tipo_es = '0';
+    };
+    $scope.modulo1 = function () {
+        tipo_es = '1';
+    };
+    $scope.modulo2 = function () {
+        tipo_es = '2';
+    };
+    $scope.modulo3 = function () {
+        tipo_es = '3';
+    }
+
 });
 
 ang.controller('agregar_contenidoCtrl', function ($scope, $http, $log, $window) {
@@ -608,6 +648,28 @@ ang.controller('agregar_contenidoCtrl', function ($scope, $http, $log, $window) 
         $window.location.href = '#/home';
     }
     $scope.PROFESOR = mail;
+    $scope.agregar_contenido= function () {
+
+        var datax = $.param({
+            url: $scope.nuevoURL,
+            tipo_cont: $scope.tipoContenido,
+            tipo_edte: tipo_es,
+            titulo: $scope.nuevoTitulo
+        });
+
+        $http.post('views/agregar_contenido', datax)
+            .success(function (data) {
+                if( notificacion != "NO"){
+
+                }
+                notificacion = $scope.tipoContenido + ' agregado correctamente';
+                $window.location.href = '#/Admin';
+            })
+            .error(function (err) {
+                $log.error(err);
+            });
+
+    }
 });
 ang.controller('eliminar_contenidoCtrl', function ($scope, $http, $log, $window) {
     if (superadmin != '0' && superadmin != '1'){
