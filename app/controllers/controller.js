@@ -416,6 +416,7 @@ ang.controller('mngacsCtrl', function ($scope, $http, $log, $window) {
             seccion: $scope.nuevoSeccion,
             clave: $scope.nuevoPassword
         });
+        $window.location.href = '#/Admin';
         $http.post('views/registroadmin', datax)
             .success(function (data) {
                 notificacion = data;
@@ -598,6 +599,7 @@ ang.controller('modulosCtrl', function ($scope, $http, $log, $window) {
     if (superadmin != '0' && superadmin != '1'){
         $window.location.href = '#/home';
     }
+
     $scope.PROFESOR = mail;
 });
 

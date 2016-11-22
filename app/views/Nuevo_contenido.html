@@ -1,28 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html>
 <head>
-    <!-- Theme Made By www.w3schools.com - No Copyright -->
-    <title>FisFinder120</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            $("#flip").click(function(){
-                $("#panel").slideToggle("slow");
-            });
-        });
-    </script>
+    <title>FisFinder 120</title>
     <style>
         body {
             font: 400 15px Lato, sans-serif;
@@ -117,7 +96,7 @@
         #panel, #flip {
             padding: 5px;
             text-align: center;
-            background-color: ;
+            background-color: transparent ;
             border: solid 1px #c3c3c3;
         }
 
@@ -152,7 +131,7 @@
             margin: 0;
             padding: 0;
             overflow: visible;
-            background-color: #333;
+            background-color: white;
         }
 
         li {
@@ -161,14 +140,14 @@
 
         li a, .dropbtn {
             display: inline-block;
-            color: white;
+            color: black;
             text-align: center;
             padding: 14px 16px;
             text-decoration: none;
         }
 
         li a:hover, .dropdown:hover .dropbtn {
-            background-color: darkslategray;
+            background-color: white;
         }
 
         li.dropdown {
@@ -178,13 +157,13 @@
         .dropdown-content {
             display: none;
             position: absolute;
-            background-color: #555555;
+            background-color: white;
             min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            box-shadow: 0px 8px 16px 0px rgba(255,255,255,1.1);
         }
 
         .dropdown-content a {
-            color: white;
+            color: black;
             padding: 12px 10px;
             text-decoration: none;
             display: block;
@@ -197,17 +176,21 @@
             display: block;
         }
 
+        .center {
+            margin: auto;
+            width: 25%;;
+            padding: 0px;
+        }
     </style>
 
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
-
 <ul>
     <li><a href="#/">Cerrar Sesión</a></li>
 
 
     <li class="dropdown">
-        <a href="#Admin" class="dropbtn">Herramientas</a>
+        <a href="" class="dropbtn">Herramientas</a>
         <div class="dropdown-content">
             <a href="#Mi_cuenta">Mi Cuenta</a>
             <a href="#Consultar_usuarios">Ver Usuarios</a>
@@ -216,14 +199,14 @@
         </div>
     </li>
     <li class="dropdown">
-        <a href="#Admin" class="dropbtn">Contenidos</a>
+        <a href="" class="dropbtn">Contenidos</a>
         <div class="dropdown-content">
             <a href="#Agregar_contenido">Agregar</a>
             <a href="#Eliminar_contenido">Eliminar</a>
         </div>
     </li>
     <li class="dropdown">
-        <a href="#Admin" class="dropbtn">Módulos</a>
+        <a href="" class="dropbtn">Módulos</a>
         <div class="dropdown-content">
             <a href="#Convergente">Convergente</a>
             <a href="#Divergente">Divergente</a>
@@ -232,88 +215,91 @@
         </div>
     </li>
     <li class="dropdown">
-        <a href="#Admin" class="dropbtn">Administrar Cuentas</a>
+        <a href="" class="dropbtn">Administrar Cuentas</a>
         <div class="dropdown-content">
             <a href="#Mngacs">Crear nuevo Administrador</a>
-            <a href="#Eliminaracc">Eliminar una Cuenta</a>
             <a href="#Modificaracc">Modificar una Cuenta</a>
-            <a href="#Consultaracc">Consultar una Cuenta</a>
         </div>
     </li>
-
     <li><a href="#Consfeed">Consultar Feedback</a></li>
+    <li class="dropdown">
+        <a href="#Admin" class="dropbtn">Inicio</a>
+    </li>
 </ul>
+<br>
+<br>
+<br>
+<br>
+<div id="wrapper">
 
+    <!-- Menu -->
+    <nav id="menu">
+        <h2>Menu</h2>
+        <ul>
+            <li><b>Administrar cuentas</b>
+                <ul>
+                    <a href="#Mngacs">Crear nuevo Administrador</a>
+                    <a href="#Eliminaracc">Eliminar una Cuenta</a>
+                    <a href="#Modificaracc">Modificar una Cuenta</a>
+                    <a href="#Consultaracc">Consultar una Cuenta</a>
+                </ul>
+            </li>
 
-<div class="jumbotron text-center" style="width: auto; height: 700px;" >
-    <h1>FisFinder 120</h1>
-    <h2 style="color: transparent"> a </h2>
-    <div class="col-sm-3" style="border: solid;background-color: #303030">
-        <h3 style="color: transparent"> a </h3>
-        <h4 style="color: snow; font-style: italic"> Sesión Iniciada: </h4>
-        <h4 style="color: snow">  </h4>{{PROFESOR}}
-        <h4 style="color: snow"> Administrador</h4>
-        <h4> </h4>
-        <h1> </h1>
-    </div>
-    <div class="container-fluid">
-        <div class="col-sm-9">
-            <div class="12u 12u$(medium) ">
-                <div class="collapse navbar-collapse" id="myNavbar2">
-                    <div id="flip">Noticias</div>
-                    <div id="panel">
-                        <ul>
-                            <li>3 Nuevos Feedback </li>
-                            <li>2 Nuevos Usuarios </li>
-                        </ul>
-                    </div>
-                </div>
+            <li><a><b>Contenidos</b></a>
+                <ul>
+                    <a href="#Agregar_contenido">Agregar</a>
+                    <a href="#Eliminar_contenido">Eliminar</a>
+                </ul>
+            </li>
+
+            <li><a href="#Modulos"><b>Modulos</b></a></li>
+
+            <li><a href="#Consfeed"><b>Consultar feedback</b></a></li>
+
+            <li><a><b>Herramientas</b></a>
+                <ul>
+                    <a href="#Mi_cuenta">Mi Cuenta</a>
+                    <a href="#Consultar_usuarios">Ver Usuarios</a>
+                    <a href="#Consultar_administradores">Ver Administradores</a>
+                    <a href="#Acerca_de">Acerca de</a>
+                </ul>
+            </li>
+
+            <li><a href="#Home"><b>Salir</b></a></li>
+        </ul>
+    </nav>
+
+    <!-- Main -->
+    <div id="main">
+        <div class="inner">
+            <header>
+                <h1>Eliminar cuenta</h1>
+                <p>Ingrese email de la cuenta a eliminar.</p>
+            </header>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id ="email"  placeholder="Email" required="" autofocus="" ng-model="nuevoEmail" maxlength="40">
             </div>
+
+            <a style="color: #e4886a" ng-cloak="">{{incompleto}}</a>
+            <br>
+            <button ng-click="agregar_contenido()"><a>Eliminar Cuenta</a></button>
+
+
         </div>
-        <h2 style="color: transparent"> a </h2>
     </div>
 
-    <!--<div class="container">
-        <div class="jumbotron" style="padding-bottom:0px;">
-            <h2>FisFinder120</h2>
+    <!-- Pie -->
+    <footer>
+        <div id="contact" class="container-fluid bg-grey">
+            <h2 class="text-center" align="center">Fisica General II</h2>
+            <h3 class="text-center" align="center">Profesor Maximiliano Rivera</h3>
+            <h4 class="text-center" align="center">UTFSM CSJ</h4>
         </div>
-        <form class="form-signin" role="form">
-            <input type="email" class="form-control" placeholder="Email" required="" autofocus="">
-            <input type="password" class="form-control" placeholder="Password" required="">
-            <label class="checkbox">
-                <a href="#"> Registrarse</a>
-            </label>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
-        </form>
-
-    </div>-->
+    </footer>
 
 
-    <!-- Container (Contact Section) -->
-    <div id="contact" class="container-fluid bg-grey">
-        <h2 class="text-center">Fisica General II</h2>
-        <h3 class="text-center">Profesor Maximiliano Rivera</h3>
-        <h4 class="text-center">UTFSM CSJ</h4>
-
-        <!--<div class="col-sm-7 slideanim">
-            <div class="row">
-                <div class="col-sm-6 form-group">
-                    <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
-                </div>
-                <div class="col-sm-6 form-group">
-                    <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
-                </div>
-            </div>
-            <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea><br>
-            <div class="row">
-                <div class="col-sm-12 form-group">
-                    <button class="btn btn-default pull-right" type="submit">Send</button>
-                </div>
-            </div>
-        </div>-->
-    </div>
 </div>
-
-
 </body>
 </html>
