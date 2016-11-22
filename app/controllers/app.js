@@ -105,6 +105,10 @@ angularRoutingApp.config(function($routeProvider) {
           templateUrl : '../views/Acerca_de.html',
           controller  : 'acerca_deCtrl'
       })
+      .when('/Modulos', {
+          templateUrl : '../views/modulos.html',
+          controller  : 'modulos_deCtrl'
+      })
 
 
       .otherwise({

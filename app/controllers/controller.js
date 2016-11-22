@@ -8,7 +8,6 @@ var seccion = '';
 var notificacion ='';
 var nfeedbacks = '';
 var superadmin= '';
-var switsh = '0';
 
 var ang = angular.module("controller", []);
 
@@ -258,12 +257,26 @@ ang.controller('convergenteCtrl', function ($scope, $http, $log, $window) {
     }
     $scope.Usuario = nombre;
 
+    if (tipo == '0' || tipo == '1' || tipo == '2' || tipo == '3' ){
+        $scope.Boton1 = 'Realizar Feedback';
+    }
+    else{
+        $scope.Boton1 = 'Volver';
+    }
+
 });
 
 ang.controller('divergenteCtrl', function ($scope, $http, $log, $window) {
     notificacion ='';
     if (tipo != '1' && superadmin != '0' && superadmin != '1'){
         $window.location.href = '#/home';
+    }
+
+    if (tipo == '0' || tipo == '1' || tipo == '2' || tipo == '3' ){
+        $scope.Boton1 = 'Realizar Feedback';
+    }
+    else{
+        $scope.Boton1 = 'Volver';
     }
     $scope.Usuario = nombre;
 });
@@ -273,6 +286,13 @@ ang.controller('asimiladorCtrl', function ($scope, $http, $log, $window) {
     if (tipo != '2' && superadmin != '0' && superadmin != '1'){
         $window.location.href = '#/home';
     }
+
+    if (tipo == '0' || tipo == '1' || tipo == '2' || tipo == '3' ){
+        $scope.Boton1 = 'Realizar Feedback';
+    }
+    else{
+        $scope.Boton1 = 'Volver';
+    }
     $scope.Usuario = nombre;
 });
 
@@ -280,6 +300,13 @@ ang.controller('adaptadorCtrl', function ($scope, $http, $log, $window) {
     notificacion ='';
     if (tipo != '3' && superadmin != '0' && superadmin != '1'){
         $window.location.href = '#/home';
+    }
+
+    if (tipo == '0' || tipo == '1' || tipo == '2' || tipo == '3' ){
+        $scope.Boton1 = 'Realizar Feedback';
+    }
+    else{
+        $scope.Boton1 = 'Volver';
     }
     $scope.Usuario = nombre;
 });
