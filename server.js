@@ -466,10 +466,10 @@ function eliminar_estudiante(pedido, respuesta) {
         connection.query("SELECT * FROM estudiante", function (err, rows) {
             if (err) throw err;
             var buffer = new Buffer(rows.length);
-            datos += '________________________________________________________________'
+            datos += '______________________________________________________________________________________________________________________';
             datos += ('\t|\t' + 'Nombre' + '\t|\t' + 'Rut' + '\t|\t' + 'Email' + '\t|\t');
             for (var i = 0; i < rows.length; i++) {
-                datos += '________________________________________________________________'
+                datos += '______________________________________________________________________________________________________________________';
                 datos += ('\t|\t' + rows[i].Nombre + '\t|\t' + rows[i].Rut + '\t|\t' + rows[i].Email + '\t|\t');
             }
             console.log('---');
@@ -481,12 +481,12 @@ function eliminar_estudiante(pedido, respuesta) {
         connection.query("SELECT * FROM administrador", function (err, rows) {
             if (err) throw err;
             var buffer = new Buffer(rows.length);
-            datos += '________________________________________________________________'
+            datos +='______________________________________________________________________________________________________________________';
             datos += ('\t\t' + 'Cuentas de Administradores' + '\t\t');
-            datos += '________________________________________________________________'
+            datos +='______________________________________________________________________________________________________________________';
             datos += ('\t|\t' + 'Nombre' + '\t|\t' + 'Rut' + '\t|\t' + 'Email' + '\t|\t');
             for (var i = 0; i < rows.length; i++) {
-                datos += '________________________________________________________________'
+                datos += '______________________________________________________________________________________________________________________';
                 datos += ('\t|\t' + rows[i].Nombre + '\t|\t' + rows[i].Rut + '\t|\t' + rows[i].Email + '\t|\t');
             }
             console.log('---');
@@ -643,10 +643,10 @@ function modificar_estudiante(pedido, respuesta) {
         connection.query("SELECT * FROM estudiante", function (err, rows) {
             if (err) throw err;
             var buffer = new Buffer(rows.length);
-            datos += '________________________________________________________________'
+            datos += '______________________________________________________________________________________________________________________';
             datos += ('\t|\t' + 'Nombre' + '\t|\t' + 'Rut' + '\t|\t' + 'Email' + '\t|\t' + 'Tipo Actual' + '\t|\t');
             for (var i = 0; i < rows.length; i++) {
-                datos += '________________________________________________________________'
+                datos += '______________________________________________________________________________________________________________________';
                 datos += ('\t|\t' + rows[i].Nombre + '\t|\t' + rows[i].Rut + '\t|\t' + rows[i].Email + '\t|\t' + rows[i].Tipo + '\t|\t');
             }
             console.log('---');

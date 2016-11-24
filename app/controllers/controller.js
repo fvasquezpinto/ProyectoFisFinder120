@@ -225,7 +225,7 @@ ang.controller('HomeCtrl', function ($scope, $http, $log, $window) {
 
                 }
                 else {
-                    $scope.error = 'Error al ingresar Usuario o Contraseña'
+                    //$scope.error = 'Error al ingresar Usuario o Contraseña'
                 }
                 //$scope.Registrarse = paso;
             })
@@ -233,7 +233,7 @@ ang.controller('HomeCtrl', function ($scope, $http, $log, $window) {
                 $log.error(err);
                 //$scope.prueba = 'sadasd';
             });
-        $scope.error = 'Error al ingresar Usuario o Contraseña';
+        //$scope.error = 'Error al ingresar Usuario o Contraseña';
         //$scope.prueba = 'sadasd';
 
 
