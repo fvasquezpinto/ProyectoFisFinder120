@@ -225,7 +225,7 @@ ang.controller('HomeCtrl', function ($scope, $http, $log, $window) {
 
                 }
                 else {
-                    //$scope.error = 'Error al ingresar Usuario o Contraseña'
+                    $scope.error = 'Error al ingresar Usuario o Contraseña'
                 }
                 //$scope.Registrarse = paso;
             })
@@ -233,7 +233,7 @@ ang.controller('HomeCtrl', function ($scope, $http, $log, $window) {
                 $log.error(err);
                 //$scope.prueba = 'sadasd';
             });
-        //$scope.error = 'Error al ingresar Usuario o Contraseña';
+        $scope.error = 'Error al ingresar Usuario o Contraseña';
         //$scope.prueba = 'sadasd';
 
 
@@ -698,3 +698,25 @@ ang.controller('consultar_administradoresCtrl', function ($scope, $http, $log, $
     $scope.PROFESOR = mail;
 });
 
+ang.controller('usuariosCtrl', function ($scope, $http, $log, $window) {
+    notificacion ='';
+    if (superadmin != '1'){
+        if(superadmin == '0'){
+            notificacion = 'No tiene permisos para realizar la acción';
+            $window.location.href = '#/Admin';
+        }
+        else {
+            $window.location.href = '#/home';
+        }
+    }
+    $scope.PROFESOR = mail;
+
+    $http.get('views/eliminar_estudiante')
+        .success(function (data) {
+            $scope.nombres=data;
+        })
+        .error(function (err) {
+            $log.error(err);
+        });
+
+});

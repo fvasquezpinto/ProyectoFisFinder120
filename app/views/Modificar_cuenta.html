@@ -2,236 +2,60 @@
 <html>
 <head>
     <title>FisFinder 120</title>
-    <style>
-        body {
-            font: 400 15px Lato, sans-serif;
-            line-height: 1.8;
-            color: #818181;
-        }
-        h2 {
-            font-size: 24px;
-            text-transform: uppercase;
-            color: #303030;
-            font-weight: 600;
-            margin-bottom: 30px;
-        }
-        h4 {
-            font-size: 19px;
-            line-height: 1.375em;
-            color: #303030;
-            font-weight: 400;
-            margin-bottom: 30px;
-        }
-        .jumbotron {
-            background-color: #444444;
-            color: #fff;
-            padding: 100px 25px;
-            font-family: Montserrat, sans-serif;
-        }
-        .container-fluid {
-            padding: 60px 50px;
-        }
-        .bg-grey {
-            background-color: #f6f6f6;
-        }
-
-        .thumbnail img {
-            width: 100%;
-            height: 100%;
-            margin-bottom: 10px;
-        }
-
-        .item h4 {
-            font-size: 19px;
-            line-height: 1.375em;
-            font-weight: 400;
-            font-style: italic;
-            margin: 70px 0;
-        }
-        .item span {
-            font-style: normal;
-        }
-
-        .panel-footer h3 {
-            font-size: 32px;
-        }
-        .panel-footer h4 {
-            color: #f6f6f6;
-            font-size: 14px;
-        }
-
-        .navbar {
-            margin-bottom: 0;
-            background-color: #2b2b2b;
-            z-index: 9999;
-            border: 0;
-            font-size: 12px !important;
-            line-height: 1.42857143 !important;
-            letter-spacing: 4px;
-            border-radius: 0;
-            font-family: Montserrat, sans-serif;
-        }
-        .navbar li a, .navbar .navbar-brand {
-            color: #fff !important;
-        }
-        .navbar-nav li a:hover, .navbar-nav li.active a {
-            color: #7fcdb8 !important;
-            background-color: #fff !important;
-        }
-        .navbar-default .navbar-toggle {
-            border-color: transparent;
-            color: #fff !important;
-        }
-        @keyframes slide {
-            0% {
-                opacity: 0;
-                transform: translateY(70%);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0%);
-            }
-        }
-
-        #panel, #flip {
-            padding: 5px;
-            text-align: center;
-            background-color: transparent ;
-            border: solid 1px #c3c3c3;
-        }
-
-        #panel {
-            padding: 50px;
-            display: none;
-        }
-
-        div.img {
-            margin: 5px;
-            border: 1px solid #000000;
-            float: left;
-            width: 180px;
-        }
-
-        div.img:hover {
-            border: 1px solid #777;
-        }
-
-        div.img img {
-            width: 100%;
-            height: auto;
-        }
-
-        div.desc {
-            padding: 15px;
-            text-align: center;
-        }
-
-        ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            overflow: visible;
-            background-color: white;
-        }
-
-        li {
-            float: right;
-        }
-
-        li a, .dropbtn {
-            display: inline-block;
-            color: black;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-        }
-
-        li a:hover, .dropdown:hover .dropbtn {
-            background-color: white;
-        }
-
-        li.dropdown {
-            display: inline-block;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: white;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(255,255,255,1.1);
-        }
-
-        .dropdown-content a {
-            color: black;
-            padding: 12px 10px;
-            text-decoration: none;
-            display: block;
-            text-align: left;
-        }
-
-        .dropdown-content a:hover {background-color: #f1f1f1}
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-        .center {
-            margin: auto;
-            width: 25%;;
-            padding: 0px;
-        }
-    </style>
-
 </head>
-<body>
-<ul>
-    <li><a href="#/">Cerrar Sesión</a></li>
-
-
-    <li class="dropdown">
-        <a href="" class="dropbtn">Herramientas</a>
-        <div class="dropdown-content">
-            <a href="#Mi_cuenta">Mi Cuenta</a>
-            <a href="#Consultar_usuarios">Ver Usuarios</a>
-            <a href="#Consultar_administradores">Ver Administradores</a>
-            <a href="#Acerca_de">Acerca de</a>
-        </div>
-    </li>
-    <li class="dropdown">
-        <a href="" class="dropbtn">Contenidos</a>
-        <div class="dropdown-content">
-            <a href="#Agregar_contenido">Agregar</a>
-            <a href="#Eliminar_contenido">Eliminar</a>
-        </div>
-    </li>
-    <li class="dropdown">
-        <a href="" class="dropbtn">Módulos</a>
-        <div class="dropdown-content">
-            <a href="#Convergente">Convergente</a>
-            <a href="#Divergente">Divergente</a>
-            <a href="#Asimilador">Asimilador</a>
-            <a href="#Adaptador">Adaptador</a>
-        </div>
-    </li>
-    <li class="dropdown">
-        <a href="" class="dropbtn">Administrar Cuentas</a>
-        <div class="dropdown-content">
-            <a href="#Mngacs">Crear nuevo Administrador</a>
-            <a href="#Eliminaracc">Eliminar una Cuenta</a>
-        </div>
-    </li>
-    <li><a href="#Consfeed">Consultar Feedback</a></li>
-    <li class="dropdown">
-        <a href="#Admin" class="dropbtn">Inicio</a>
-    </li>
-</ul>
-<header></header>
-<br>
-<br>
-<br>
-<br>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
 <div id="wrapper">
+
+    <!-- Encabezado -->
+    <header id="header">
+        <div class="inner">
+
+
+            <!-- Nav -->
+            <nav>
+                <ul>
+                    <li><a href="#Admin"><b>Inicio</b></a></li>
+
+                    <div class="dropdown">
+                        <li><a>Cuentas</a></li>
+                        <div class="dropdown-content">
+                            <a href="#Mngacs">Crear nuevo Administrador</a>
+                            <a href="#Eliminaracc">Eliminar una Cuenta</a>
+                            <a href="#Modificaracc">Modificar una Cuenta</a>
+
+                        </div>
+                    </div>
+
+                    <div class="dropdown">
+                        <li><a>Contenidos</a></li>
+                        <div class="dropdown-content">
+                            <a href="#Agregar_contenido">Agregar</a>
+                            <a href="#Admin">Eliminar</a>
+                        </div>
+                    </div>
+
+
+                    <li><a href="#Modulos"><b>Modulos</b></a></li>
+
+                    <li><a href="#Consfeed"><b>Feedback</b></a></li>
+
+
+                    <div class="dropdown">
+                        <li><a>Herramientas</a></li>
+                        <div class="dropdown-content">
+                            <a href="#Usuarios">Ver Usuarios</a>
+                            <a href="#Usuarios">Ver Administradores</a>
+
+                        </div>
+                    </div>
+
+                    <li><a href="#Home"><b>Salir</b></a></li>
+
+                </ul>
+            </nav>
+
+        </div>
+    </header>
 
     <!-- Main -->
     <div id="main">
@@ -252,17 +76,14 @@
             </div>
             <a style="color: #e4886a" ng-cloak="">{{incompleto}}</a>
             <br>
-            <button ng-click="modificar_cuenta()"><a>Modificar Cuenta</a></button>
-
-
+            <button ng-click="modificar_cuenta()">Modificar Cuenta</button>
         </div>
-    </div>
 
-    <center>
+        <br>
         <div style="width: 700px; height: auto;">
             {{nombres}}
         </div>
-    </center>
+    </div>
 
     <!-- Pie -->
     <footer>
@@ -272,7 +93,6 @@
             <h4 class="text-center" align="center">UTFSM CSJ</h4>
         </div>
     </footer>
-
 
 </div>
 </body>

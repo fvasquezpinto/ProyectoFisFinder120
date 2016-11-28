@@ -85,21 +85,18 @@ angularRoutingApp.config(function($routeProvider) {
           templateUrl : '../views/Nuevo_contenido.html',
           controller  : 'agregar_contenidoCtrl'
       })
-      .when('/Eliminar_contenido', {
-          templateUrl : '../views/Eliminar_contenido.html',
-          controller  : 'eliminar_contenidoCtrl'
-      })
+
       .when('/Mi_cuenta', {
           templateUrl : '../views/Mi_cuenta.html',
           controller  : 'mi_cuentaCtrl'
       })
       .when('/Consultar_usuarios', {
           templateUrl : '../views/Usuarios.html',
-          controller  : 'consultar_usuariosCtrl'
+          controller  : 'usuariosCtrl'
       })
       .when('/Consultar_administradores', {
-          templateUrl : '../views/Administradores.html',
-          controller  : 'consultar_administradoresCtrl'
+          templateUrl : '../views/Usuarios.html',
+          controller  : 'usuariosCtrl'
       })
       .when('/Acerca_de', {
           templateUrl : '../views/Acerca_de.html',
@@ -109,7 +106,10 @@ angularRoutingApp.config(function($routeProvider) {
           templateUrl : '../views/modulos.html',
           controller  : 'modulosCtrl'
       })
-
+      .when('/Usuarios', {
+          templateUrl : '../views/Usuarios.html',
+          controller  : 'usuariosCtrl'
+      })
 
       .otherwise({
         redirectTo: '/'

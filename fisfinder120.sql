@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-11-2016 a las 02:39:35
+-- Tiempo de generación: 27-11-2016 a las 01:40:45
 -- Versión del servidor: 5.7.9
 -- Versión de PHP: 5.6.16
 
@@ -42,7 +42,10 @@ CREATE TABLE IF NOT EXISTS `administrador` (
 --
 
 INSERT INTO `administrador` (`Nombre`, `Rut`, `Email`, `Password`, `SuperAdmin`, `Seccion`) VALUES
-('Maximilialo Rivera', '12345678-4', 'maximiliano.rivera@usm.cl', '1234', 1, 'General');
+('Maximilialo Rivera', '12345678-4', 'maximiliano.rivera@usm.cl', '1234', 1, 'General'),
+('Profesor2', '1236985214', 'proferos2@usm.cl', '1234', 0, 'Fis120'),
+('Profesor1', '121234568', 'profesor1@usm.cl', '1234', 0, 'Fis110'),
+('Profero3', '1234567899', 'profesor3@usm.cl', '1234', 0, 'Fis120');
 
 -- --------------------------------------------------------
 
@@ -82,11 +85,40 @@ CREATE TABLE IF NOT EXISTS `estudiante` (
 --
 
 INSERT INTO `estudiante` (`Nombre`, `Rut`, `Email`, `Password`, `Rol`, `Tipo`) VALUES
-('123', '123', 'mi@on.sis', 'papas', '123123', '1'),
-('Gabriel', 'Molina', 'g@m.b', '1234', '1234', '0'),
-('4314212', '214214342', '123@miau.cl', '1231', '2131', '0'),
-('121412', '3212', '123@miau2.cl', '12343', '213', '0'),
-('123432', '321', '132@asd', '123', '1233', '4');
+('Michel', '194567894', 'michel.concha.14@sansano.usm.cl', 'hamster', '2014735292', '2'),
+('Francisco', '191339932', 'francisco.vasquez.14@sansano.usm.cl', '1234', '2014735685', '3'),
+('Andrea', '191376048', 'erika.riveros.14@sansano.usm.cl', 'Ferrari2018', '2014045336', '0'),
+('Jorge', '191254896', 'jorge.aliste.14@sansano.usm.cl', 'potopoto', '2014735384', '1');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `feedback`
+--
+
+DROP TABLE IF EXISTS `feedback`;
+CREATE TABLE IF NOT EXISTS `feedback` (
+  `rownum` int(11) NOT NULL AUTO_INCREMENT,
+  `Mensaje` varchar(500) NOT NULL,
+  `Tipo` varchar(1) NOT NULL,
+  `Revisado` varchar(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`rownum`)
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `feedback`
+--
+
+INSERT INTO `feedback` (`rownum`, `Mensaje`, `Tipo`, `Revisado`) VALUES
+(1, 'asdasdasasd', '0', '0'),
+(2, 'aasdasdasdasd', '0', '0'),
+(3, 'wadasdasdsad', '0', '0'),
+(4, 'auauauau', '0', '0'),
+(5, 'Feedback 1', '0', '0'),
+(6, 'Feedback Jorge', '1', '0'),
+(7, 'Feedback Andrea', '0', '0'),
+(8, 'Feedback4', '1', '0'),
+(9, 'Feedback martes', '1', '0');
 
 -- --------------------------------------------------------
 

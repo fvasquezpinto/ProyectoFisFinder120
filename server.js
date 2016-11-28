@@ -466,10 +466,10 @@ function eliminar_estudiante(pedido, respuesta) {
         connection.query("SELECT * FROM estudiante", function (err, rows) {
             if (err) throw err;
             var buffer = new Buffer(rows.length);
-            datos += '______________________________________________________________________________________________________________________';
+            datos += '__________________________________________________________________________________________________'
             datos += ('\t|\t' + 'Nombre' + '\t|\t' + 'Rut' + '\t|\t' + 'Email' + '\t|\t');
             for (var i = 0; i < rows.length; i++) {
-                datos += '______________________________________________________________________________________________________________________';
+                datos += '__________________________________________________________________________________________________'
                 datos += ('\t|\t' + rows[i].Nombre + '\t|\t' + rows[i].Rut + '\t|\t' + rows[i].Email + '\t|\t');
             }
             console.log('---');
@@ -478,15 +478,17 @@ function eliminar_estudiante(pedido, respuesta) {
 
 
         });
-        connection.query("SELECT * FROM administrador", function (err, rows) {
+        connection.query("SELECT * FROM administrador where Email <> ? " ,'maximiliano.rivera@usm.cl', function (err, rows) {
             if (err) throw err;
             var buffer = new Buffer(rows.length);
-            datos +='______________________________________________________________________________________________________________________';
+            datos += '__________________________________________________________________________________________________'
+            datos += '__________________________________________________________________________________________________'
+            datos += '__________________________________________________________________________________________________'
             datos += ('\t\t' + 'Cuentas de Administradores' + '\t\t');
-            datos +='______________________________________________________________________________________________________________________';
+            datos += '__________________________________________________________________________________________________'
             datos += ('\t|\t' + 'Nombre' + '\t|\t' + 'Rut' + '\t|\t' + 'Email' + '\t|\t');
             for (var i = 0; i < rows.length; i++) {
-                datos += '______________________________________________________________________________________________________________________';
+                datos += '__________________________________________________________________________________________________'
                 datos += ('\t|\t' + rows[i].Nombre + '\t|\t' + rows[i].Rut + '\t|\t' + rows[i].Email + '\t|\t');
             }
             console.log('---');
@@ -518,19 +520,21 @@ function eliminar_es(pedido, respuesta) {
                 });
             }
             else {
-                connection.query("SELECT * FROM administrador WHERE Email = ?", formulario['email'], function (err, rows) {
-                    if (err) throw err;
-                    if (rows.length != 0) {
-                        connection.query("DELETE FROM administrador WHERE Email = ?", formulario['email'], function (err, rows) {
-                            if (err) throw err;
+                if(formulario['email'] != 'maximiliano.rivera@usm.cl'){
+                    connection.query("SELECT * FROM administrador WHERE Email = ?", formulario['email'], function (err, rows) {
+                        if (err) throw err;
+                        if (rows.length != 0) {
+                            connection.query("DELETE FROM administrador WHERE Email = ?", formulario['email'], function (err, rows) {
+                                if (err) throw err;
 
-                            respuesta.end(formulario['email']);
-                        });
-                    }
-                    else {
-                        respuesta.end('NO');
-                    }
-                });
+                                respuesta.end(formulario['email']);
+                            });
+                        }
+                        else {
+                            respuesta.end('NO');
+                        }
+                    });
+                 }
             }
         });
     });
@@ -643,10 +647,10 @@ function modificar_estudiante(pedido, respuesta) {
         connection.query("SELECT * FROM estudiante", function (err, rows) {
             if (err) throw err;
             var buffer = new Buffer(rows.length);
-            datos += '______________________________________________________________________________________________________________________';
+            datos += '__________________________________________________________________________________________________'
             datos += ('\t|\t' + 'Nombre' + '\t|\t' + 'Rut' + '\t|\t' + 'Email' + '\t|\t' + 'Tipo Actual' + '\t|\t');
             for (var i = 0; i < rows.length; i++) {
-                datos += '______________________________________________________________________________________________________________________';
+                datos += '__________________________________________________________________________________________________'
                 datos += ('\t|\t' + rows[i].Nombre + '\t|\t' + rows[i].Rut + '\t|\t' + rows[i].Email + '\t|\t' + rows[i].Tipo + '\t|\t');
             }
             console.log('---');
@@ -879,7 +883,7 @@ function obtener_feedbacks(pedido, respuesta) {
         var tipe='';
         connection.query("SELECT * FROM feedback ORDER BY rownum DESC", function (err, rows) {
             if (err) throw err;
-            datos += '________________________________________________________________'
+            datos += '__________________________________________________________________________________________________'
             datos += ('\t|\t' + '#' + '\t|\t' + 'Tipo' + '\t|\t' + 'Feedback' + '\t|\t');
             for (var i = 0; i < rows.length; i++) {
                 if (i==0){
@@ -894,7 +898,7 @@ function obtener_feedbacks(pedido, respuesta) {
                 else if (i==3){
                     tipe='Asimilador'
                 }
-                datos += '________________________________________________________________'
+                datos += '__________________________________________________________________________________________________'
                 datos += ('\t|\t' + (rows.length-i).toString() + '\t|\t' + tipe + '\t|\t' + rows[i].Mensaje + '\t|\t');
             }
             console.log('---');
