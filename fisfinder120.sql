@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-11-2016 a las 01:40:45
+-- Tiempo de generación: 28-11-2016 a las 02:53:39
 -- Versión del servidor: 5.7.9
 -- Versión de PHP: 5.6.16
 
@@ -140,14 +140,28 @@ CREATE TABLE IF NOT EXISTS `modulo` (
 
 DROP TABLE IF EXISTS `pregunta`;
 CREATE TABLE IF NOT EXISTS `pregunta` (
-  `Test?` tinyint(1) NOT NULL,
-  `#Pregunta` int(11) NOT NULL,
-  `Alternativa1` char(1) NOT NULL,
-  `Alternativa2` char(1) NOT NULL,
-  `Alternativa3` char(1) NOT NULL,
-  PRIMARY KEY (`#Pregunta`),
-  KEY `Test?` (`Test?`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `#Pregunta` int(11) NOT NULL AUTO_INCREMENT,
+  `Enunciado` varchar(100) NOT NULL,
+  PRIMARY KEY (`#Pregunta`)
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `pregunta`
+--
+
+INSERT INTO `pregunta` (`#Pregunta`, `Enunciado`) VALUES
+(1, 'Cuando aprendo...'),
+(2, 'Aprendo mejor cuando...'),
+(3, 'Cuando estoy aprendiendo...'),
+(4, 'Yo aprendo...'),
+(5, 'Cuando aprendo...'),
+(6, 'Cuando estoy aprendiendo...'),
+(7, 'Yo aprendo mejor de...'),
+(8, 'Cuando aprendo...'),
+(9, 'Aprendo mejor cuando...'),
+(10, 'Cuando estoy aprendiendo...'),
+(11, 'Cuando aprendo...'),
+(12, 'Aprendo mejor cuando...');
 
 -- --------------------------------------------------------
 
