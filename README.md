@@ -21,5 +21,7 @@ En el explorador Chrome o browser de su sistema operativo diríjase a localhost:
 
 
 *) Para cambiar la credencial de la base de datos a utilizar, por favor edite el archivo server.js
+
 **) Asegurese de que existe por lo menos un administrador, en la base de datos, que tiene el atributo SuperAdmin = 1, puesto que solo este tipo de usuario puede acceder a herramientas como eliminar cuentas o modificarlas.
+
 ***) Para notar que el Test funciona, por favor completar de distintas maneras dicha prueba. Una opción es completar el test con respuestas 1,2,3,4 para cada pregunta y en otra instancia con 4,3,2,1. Revisar la base de datos si es necesario.
